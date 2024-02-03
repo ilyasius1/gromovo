@@ -7,16 +7,20 @@ namespace App\Http\Controllers\Api\v1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
+use App\Http\Resources\ImageResource;
 use App\Models\Image;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        $images = Image::all();
+        return ImageResource::collection($images);
     }
 
     /**
@@ -37,10 +41,12 @@ class ImageController extends Controller
 
     /**
      * Display the specified resource.
+     * @param Image $image
+     * @return ImageResource
      */
-    public function show(Image $image)
+    public function show(Image $image): ImageResource
     {
-        //
+        return new ImageResource($image);
     }
 
     /**

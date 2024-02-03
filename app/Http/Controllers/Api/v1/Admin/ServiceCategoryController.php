@@ -7,13 +7,15 @@ use App\Http\Requests\StoreServiceCategoryRequest;
 use App\Http\Requests\UpdateServiceCategoryRequest;
 use App\Http\Resources\ServiceCategoryResource;
 use App\Models\ServiceCategory;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ServiceCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         $serviceCategories = ServiceCategory::all();
         return ServiceCategoryResource::collection($serviceCategories);
@@ -37,8 +39,10 @@ class ServiceCategoryController extends Controller
 
     /**
      * Display the specified resource.
+     * @param ServiceCategory $serviceCategory
+     * @return ServiceCategoryResource
      */
-    public function show(ServiceCategory $serviceCategory)
+    public function show(ServiceCategory $serviceCategory): ServiceCategoryResource
     {
         return new ServiceCategoryResource($serviceCategory);
     }

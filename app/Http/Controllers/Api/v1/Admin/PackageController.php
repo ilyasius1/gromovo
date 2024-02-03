@@ -5,16 +5,20 @@ namespace App\Http\Controllers\Api\v1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePackageRequest;
 use App\Http\Requests\UpdatePackageRequest;
+use App\Http\Resources\PackageResource;
 use App\Models\Package;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PackageController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        $packages = Package::all();
+        return PackageResource::collection($packages);
     }
 
     /**
@@ -35,10 +39,12 @@ class PackageController extends Controller
 
     /**
      * Display the specified resource.
+     * @param Package $package
+     * @return PackageResource
      */
-    public function show(Package $package)
+    public function show(Package $package): PackageResource
     {
-        //
+        return new PackageResource($package);
     }
 
     /**
