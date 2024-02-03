@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\QueryBuilders\PricesQueryBuilder;
+use App\QueryBuilders\QueryBuilder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        //Query builders
+        $this->app->bind(QueryBuilder::class, PricesQueryBuilder::class);
     }
 
     /**

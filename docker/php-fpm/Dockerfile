@@ -1,7 +1,11 @@
 FROM phpdockerio/php:8.2-fpm
 WORKDIR "/app"
-USER root
-RUN addgroup -g 1000 app && addgroup www-data app
+
+RUN apt-get update \
+    && apt-get -y --no-install-recommends install \
+        git \
+        php8.2-pgsql \
+        php8.2-redis \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 RUN chown -R www-data:www-data /app
-RUN adduser -u 1000 -s /bin/sh -D -G app app
-USER www-data

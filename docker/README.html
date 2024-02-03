@@ -1,14 +1,31 @@
 <html>
 <head>
     <title>PHPDocker.io Readme</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 
     <style>
+        * {
+            line-height: 1.8em;
+        }
+
         code {
-            background-color : #ddd;
-            padding          : 2px 5px;
-            font-family      : monospace;
-            font-size        : 16px;
+            font-size: 1.2em;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            color: #111;
+            font-family: monospace;
+            padding: 3px;
+        }
+
+        pre code {
+            border-left: 3px solid #f36d33;
+            page-break-inside: avoid;
+            margin-bottom: 1.6em;
+            max-width: 100%;
+            overflow: auto;
+            padding: 1em 1.5em;
+            display: block;
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -58,15 +75,15 @@ add your own hostname on your <code>/etc/hosts</code></p>
 <tbody>
 <tr>
   <td>Webserver</td>
-  <td><a href="http://localhost:7777">localhost:7777</a></td>
+  <td><a href="http://localhost:8000">localhost:8000</a></td>
 </tr>
 <tr>
   <td>Mailhog web interface</td>
-  <td><a href="http://localhost:7778">localhost:7778</a></td>
+  <td><a href="http://localhost:8001">localhost:8001</a></td>
 </tr>
 <tr>
-  <td>MySQL</td>
-  <td><strong>host:</strong> <code>localhost</code>; <strong>port:</strong> <code>7779</code></td>
+  <td>PostgreSQL</td>
+  <td><strong>host:</strong> <code>localhost</code>; <strong>port:</strong> <code>8004</code></td>
 </tr>
 </tbody>
 </table>
@@ -90,9 +107,9 @@ add your own hostname on your <code>/etc/hosts</code></p>
   <td>9000</td>
 </tr>
 <tr>
-  <td>MySQL</td>
-  <td>mysql</td>
-  <td>3306 (default)</td>
+  <td>Postgres</td>
+  <td>postgres</td>
+  <td>5432 (default)</td>
 </tr>
 <tr>
   <td>Redis</td>
@@ -212,7 +229,7 @@ docker-compose.yml</li>
 
 <h3>Create a launch.json for visual studio code</h3>
 
-<p>{
+<pre><code>  {
       "version": "0.2.0",
       "configurations": [
           {
@@ -220,13 +237,14 @@ docker-compose.yml</li>
               "type": "php",
               "request": "launch",
               "port": 9000,
-              // Server Remote Path -> Local Project Path
+              // Server Remote Path -&gt; Local Project Path
               "pathMappings": {
                   "/application/public": "${workspaceRoot}/"
               },
           }
       ]
-  }</p>
+  }
+</code></pre>
     </div>
     <div class="pure-u-1-24"></div>
 </div>

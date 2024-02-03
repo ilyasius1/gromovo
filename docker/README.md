@@ -30,9 +30,9 @@ add your own hostname on your `/etc/hosts`
 
 Service|Address outside containers
 -------|--------------------------
-Webserver|[localhost:7777](http://localhost:7777)
-Mailhog web interface|[localhost:7778](http://localhost:7778)
-MySQL|**host:** `localhost`; **port:** `7779`
+Webserver|[localhost:8000](http://localhost:8000)
+Mailhog web interface|[localhost:8001](http://localhost:8001)
+PostgreSQL|**host:** `localhost`; **port:** `8004`
 
 ## Hosts within your environment ##
 
@@ -41,7 +41,7 @@ You'll need to configure your application to use any services you enabled:
 Service|Hostname|Port number
 ------|---------|-----------
 php-fpm|php-fpm|9000
-MySQL|mysql|3306 (default)
+Postgres|postgres|5432 (default)
 Redis|redis|6379 (default)
 SMTP (Mailhog)|mailhog|1025 (default)
 
@@ -145,7 +145,7 @@ environment:
 * Finally, add “Xdebug helper” extension in your browser, set breakpoints and start debugging
 
 ### Create a launch.json for visual studio code
-
+```
   {
       "version": "0.2.0",
       "configurations": [
@@ -161,4 +161,4 @@ environment:
           }
       ]
   }
-
+```
