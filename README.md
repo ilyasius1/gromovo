@@ -1,66 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Installation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+```bash
+composer install
 
-## About Laravel
+php artisan key:generate
+php artisan storage:link
+#~~~~~~~~~~~~~~~~~~~~~~~~~~
+#For Production:
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+#~~~~~~~~~~~~~~~~~~~~~~~~~~
+php artisan migrate
+#~~~~~~~~~~~
+#For dev
+npm install
+vite dev
+#~~~~~~~~~~~ 
+```
+# API
+### Получить коттеджи
+```http request
+GET /api/V1/cottages
+```
+### Ответ
+```
+{  "data": [
+        {
+            "id": 940581,
+            "name": "Коттедж №1",
+            "photo": "gr-cottages/1/07.jpg",
+        },
+        {
+            "id": 4,
+            "name": "Перевозные бани",
+            "imgSrc": "images/category/YXBjUQHt8nVVXtQhVYmU0IMMuH9rMJbJ1RAMMpUB.png"
+        }
+    ]
+}
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Получить коттедж
+```http request
+GET /api/cottage/{id}
+```
+### Ответ
+```
+{
+    "data": {
+        "id": 1,
+        "idCategory": 1,
+        "projectName": "R-1",
+        "images": [
+            "images/houses/UcsRGTN2CBkG2QGrW3A4Z7kVuihRvN9Q4TqBv497.jpg",
+            "images/houses/Tb2tA3BnOLMb5zLbYgjumnSKu6Igcmia8tB0QZOE.jpg",
+            "images/houses/YoLfovDmOt7bRQq0wEv8IyWqn9XSTECe7OjEfHsY.jpg"
+        ],
+        "s": 115,
+        "size": {
+            "width": 10,
+            "height": 13
+        },
+        "bedroom": 2,
+        "bathroom": 1,
+        "minprice": "4995000.00",
+        "promoID": null,
+        "mansarda": 1,
+        "floor": 1,
+        "constructionPeriod": "12-14 дней",
+        "sizeOnPlan": "7-8 м.",
+        "complects": {
+            "fullConstruction": [
+                "Высота: 1 этаж 235 м. (17 венцов бруса). Мансардный этаж: 23 м.\r\nОснование: Усиленное — Брус 150х150(h) мм.\r\nПоловые лаги: Усиленные — Брус 100х150(h) мм. Шаг лаг 06 м.\r\nЧерновой пол: Бруски 40х50 мм. Доска (обрезная) 100х20мм.\r\nЧистовой пол: Шпунтованная доска толщиной 36 мм.\r\nСтены: Профилированный брус 95х145(h) мм. 145х145(h) мм. или 190х145(h) мм. в зависимости от выбранной толщины. Брус атмосферной сушки. Возможен выбор тип бруса: прямой или полуовал.\r\nПерегородки 1-эт.: Профилированный брус 95х145(h) мм. Впиливаются в несущие стены. Брус атмосферной сушки.\r\nМежвенцовый утеплитель: Льноджутовое полотно толщиной 5 мм. Ширина согласно выбранной толщине бруса.\r\nСборка угла: Тёплый угол.\r\nСборка сруба: Металлический нагель (гвозди 200 мм).\r\nУтепление: Пол межэтажное перекрытие мансарда утепляются минеральной рулонной ватой «Кнауф» (или его аналог) толщиной в 100 мм.\r\nПароизоляция: «Изоспан» (или его аналог). Монтируется с двух сторон утеплителя.\r\nМежэтажное перекрытие: Брус 40х150(h) мм. С шагом 06 м.\r\nКаркас мансарды: Брус 40х150(h) мм.\r\nПерегородки 2-эт.: Каркасные. Брус 40х100 мм. \r\nВнутренняя отделка: Сухая вагонка хвойных пород толщиной 14-16 мм. Плинтус 35-40 мм.– пол потолок и углы стен объекта. Профилированный брус не обшивается т.к. строганный и не требует отделки.\r\nСтропила и обрешетка: Стропила изготавливаются из бруса 40х150(h) мм. Обрешетка: доска (обрезная) 100х20 мм.\r\nФронтоны углы и поднебесники: Вагонка хвойных пород толщиной 14-16 мм.\r\nВысота конька: 33-35 м.\r\nКровля: Волнистый лист – ондулин. Цвет по выбору: красный коричневый зеленый.\r\nОкна: деревянные — 10х12(h) м. с двойным остеклением одностворчатые. С фурнитурой.\r\nДвери: Входная: металлическая — 205х08 м. Межкомнатные: деревянные филенчатые — 205х08 м. С фурнитурой.\r\nЛестница: Деревянная с перилами и точёными балясинами. Тетива выполняется из бруса 95х145(h) мм. Ступеньки 200х40 мм. Впиливаются в тетиву. Угол наклона шаг и высота ступеней определяется по месту и согласовывается с Заказчиком.\r\nВнутренняя и наружная отделка выполнена оцинкованными гвоздями."
+            ],
+            "withoutFinishing": [
+                "Высота: 1 этаж 235 м. (17 венцов бруса). Мансардный этаж: 23 м.\r\nОснование: Усиленное — Брус 150х150(h) мм.\r\nПоловые лаги: Усиленные — Брус 100х150(h) мм. Шаг лаг 06 м.\r\nЧерновой пол: Бруски 40х50 мм. Доска (обрезная) 100х20 мм.\r\nСтены: Профилированный брус 95х145(h) мм. 145х145(h) мм. или 190х145(h) мм. в зависимости от выбранной толщины. Брус атмосферной сушки. Возможен выбор тип бруса: прямой или полуовал.\r\nПерегородки 1-эт.: Профилированный брус 95х145(h) мм. Впиливаются в несущие стены. Брус атмосферной сушки.\r\nМежвенцовый утеплитель: Льноджутовое полотно толщиной 5 мм. Ширина согласно выбранной толщине бруса.\r\nСборка угла: Тёплый угол.\r\nСборка сруба: Металлический нагель (гвозди 200 мм).\r\nМежэтажное перекрытие: Брус 40х150(h) мм. С шагом 06 м.\r\nКаркас мансарды: Брус 40х150(h) мм.\r\nСтропила и обрешетка: Стропила изготавливаются из бруса 40х150(h) мм. Обрешетка: доска (обрезная) 100х20мм.\r\nФронтоны углы и поднебесники: Вагонка хвойных пород толщиной 14-16 мм.\r\nВысота конька: 33-35 м.\r\nКровля: Волнистый лист – ондулин. Цвет по выбору: красный коричневый зеленый.\r\nНаружная отделка выполнена оцинкованными гвоздями."
+            ]
+        },
+        "prices": {
+            "fullConstruction": [
+                {
+                    "sizeId": 1,
+                    "price": 998000
+                },
+                {
+                    "sizeId": 2,
+                    "price": 1065000
+                },
+                {
+                    "sizeId": 3,
+                    "price": 1164000
+                }
+            ],
+            "withoutFinishing": [
+                {
+                    "sizeId": 4,
+                    "price": 998000
+                },
+                {
+                    "sizeId": 5,
+                    "price": 1065000
+                },
+                {
+                    "sizeId": 6,
+                    "price": 1164000
+                }
+            ]
+        }
+    }
+}
+```
