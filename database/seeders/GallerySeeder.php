@@ -7,6 +7,7 @@ use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Orchid\Attachment\Models\Attachment;
 
 class GallerySeeder extends Seeder
 {
@@ -17,17 +18,6 @@ class GallerySeeder extends Seeder
     {
         Gallery::factory()
             ->count(10)
-            ->has(
-                Image::factory()
-                ->count(5)
-                    ->state(function (array $attributes, Gallery $gallery) {
-                        return ['gallery_id' => $gallery->id];
-                    }),
-                'images'
-            )
-//            ->state(new Sequence(
-//                fn (Sequence $sequence) => [ 'main_image_id' => $sequence->images->first()]
-//            ))
             ->create();
     }
 }

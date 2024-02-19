@@ -20,7 +20,7 @@ class ImageFactory extends Factory
         return [
             'name' => fake('ru_RU')->word(),
             'gallery_id' => fake()->randomDigitNotNull(),
-            'url' => fake()->imageUrl()
+            'attachment_id' => fake()->imageUrl()
         ];
     }
 }

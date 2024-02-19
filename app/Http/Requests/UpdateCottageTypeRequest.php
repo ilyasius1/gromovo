@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCottageTypeRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateCottageTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,7 @@ class UpdateCottageTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cottageType.name' => ['required','min:1','max:255', Rule::unique('App\Models\CottageType','name')->ignore($this->route()->cottageType)],
         ];
     }
 }

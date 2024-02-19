@@ -18,7 +18,7 @@ class CottageResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'cottage_type_id' => $this->cottage_type_id,
-            'gallery_id' => $this->gallery_id,
+            'main_gallery_id' => $this->main_gallery_id,
             'schema_gallery_id' => $this->schema_gallery_id,
             'summer_gallery_id' => $this->summer_gallery_id,
             'winter_gallery_id' => $this->winter_gallery_id,

@@ -17,8 +17,11 @@ return new class extends Migration
             $table->foreignId('gallery_id')
                 ->references('id')
                 ->on('galleries')
-                ->restrictOnDelete();
-            $table->string('url');
+                ->cascadeOnDelete();
+            $table->foreignId('attachment_id')
+                ->references('id')
+                ->on('attachments')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
