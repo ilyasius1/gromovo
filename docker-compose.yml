@@ -18,7 +18,7 @@ services:
             POSTGRES_PASSWORD: "${DB_PASSWORD:-secret}"
             POSTGRES_DB: "${DB_DATABASE:-gromovo}"
         ports:
-            - "9004:5432"
+            - "9004:${DB_PORT:-5432}"
 
     webserver:
         image: "nginx:alpine"
@@ -27,7 +27,7 @@ services:
             - ".:/app"
             - "./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
         ports:
-            - "9000:80"
+            - "${APP_PORT:-9000}:80"
 
     php-fpm:
         build: docker/php-fpm

@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/app/Orchid/Layouts/Examples/
+/app/Orchid/Screens/Examples/

@@ -24,18 +24,18 @@ class GalleryFactory extends Factory
         ];
     }
 
-    /**
-     * Configure the factory.
-     *
-     * @return GalleryFactory
-     */
-    public function configure(): GalleryFactory
-    {
-        return $this->afterCreating(function (Gallery $gallery) {
-            $image = $gallery->images()->get()->random();
-            $gallery->main_image_id = $image->id;
-            $gallery->save();
-        });
-    }
+//    /**
+//     * Configure the factory.
+//     *
+//     * @return GalleryFactory
+//     */
+//    public function configure(): GalleryFactory
+//    {
+//        return $this->afterCreating(function (Gallery $gallery) {
+//            $image = $gallery->images()->get()->random();
+//            $gallery->main_image_id = $image->id;
+//            $gallery->save();
+//        });
+//    }
 
 }

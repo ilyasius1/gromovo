@@ -20,7 +20,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('cottage_types')
                 ->restrictOnDelete();
-            $table->foreignId('gallery_id')
+            $table->foreignId('main_gallery_id')
                 ->nullable()
                 ->references('id')
                 ->on('galleries')

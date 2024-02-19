@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Orchid\Attachment\Models\Attachment;
 
 class CottageTypeSeeder extends Seeder
 {
@@ -39,7 +40,7 @@ class CottageTypeSeeder extends Seeder
                     ->sequence(function (Sequence $sequence) {
                         return [
                             'name' => 'Громово-Коттедж №' . $sequence->index + 1,
-                            'gallery_id' => function (array $attributes) {
+                            'main_gallery_id' => function (array $attributes) {
                                 return Gallery::factory()
                                     ->state(function () use ($attributes) {
                                         return [
@@ -47,8 +48,7 @@ class CottageTypeSeeder extends Seeder
                                             'name_eng' => Str::slug($attributes['name']),
                                             'description' => 'Фотографии ' . str_replace('Громово-Коттедж', 'Громово-Коттеджа', $attributes['name'])
                                         ];
-                                    })
-                                    ->has(Image::factory()->count(10));
+                                    });
                             },
                             'schema_gallery_id' =>  function (array $attributes) {
                                 return Gallery::factory()
@@ -58,8 +58,7 @@ class CottageTypeSeeder extends Seeder
                                             'name_eng' => Str::slug($attributes['name'] . ' схема'),
                                             'description' => 'Cхема ' . str_replace('Громово-Коттедж', 'Громово-Коттеджа', $attributes['name'])
                                         ];
-                                    })
-                                    ->has(Image::factory()->count(5));
+                                    });
                             },
                             'summer_gallery_id' =>  function (array $attributes) {
                                 return Gallery::factory()
@@ -72,8 +71,7 @@ class CottageTypeSeeder extends Seeder
                                                 . str_replace('Громово-Коттедж', 'Громово-Коттеджа', $name)
                                                 . ' летом'
                                         ];
-                                    })
-                                    ->has(Image::factory()->count(10));;
+                                    });
                             },
                             'winter_gallery_id' =>  function (array $attributes) {
                                 return Gallery::factory()
@@ -86,8 +84,7 @@ class CottageTypeSeeder extends Seeder
                                                 . str_replace('Громово-Коттедж', 'Громово-Коттеджа', $name)
                                                 . ' зимой',
                                         ];
-                                    })
-                                    ->has(Image::factory()->count(10));
+                                    });
                             },
                         ];
                     })

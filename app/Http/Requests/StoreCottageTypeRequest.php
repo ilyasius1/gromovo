@@ -11,7 +11,7 @@ class StoreCottageTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreCottageTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cottageType.name' => 'required|min:1|max:255|unique:App\Models\CottageType,name',
         ];
     }
 }

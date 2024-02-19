@@ -9,15 +9,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereIn;
+use Orchid\Screen\AsSource;
 
 class Cottage extends Model
 {
     use HasFactory;
+    use AsSource;
+    use Filterable;
 
     protected $fillable = [
         'name',
         'cottage_type_id',
-        'gallery_id',
+        'main_gallery_id',
         'schema_gallery_id',
         'summer_gallery_id',
         'winter_gallery_id',
@@ -45,6 +51,22 @@ class Cottage extends Model
         'floor3_features' => 'array',
     ];
 
+    //Orchid filters and sorts
+    protected array $allowedFilters = [
+        'id' => Where::class,
+        'name' => Where::class,
+        'cottage_type_id' => WhereIn::class
+    ];
+
+    protected array $allowedSorts = [
+        'id',
+        'name',
+        'cottage_type_id',
+        'area',
+        'floors',
+        'is_active'
+    ];
+
     // Relations
     public function cottageType(): BelongsTo
     {
@@ -52,7 +74,7 @@ class Cottage extends Model
     }
 
 
-    public function gallery(): BelongsTo
+    public function mainGallery(): BelongsTo
     {
         return $this->BelongsTo(Gallery::class);
     }

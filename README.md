@@ -1,21 +1,49 @@
 ## Installation
 
+Отредактировать файл .env:
+````
+APP_URL=(домен)
+FRONTEND_URL=(адрес фронтенда, с которого будут идти запросы)
+DB_CONNECTION=(тип БД)
+DB_HOST=(адрес БД)
+DB_PORT=(порт БД)
+DB_DATABASE=(имя БД)
+DB_USERNAME=(имя пользователя БД)
+DB_PASSWORD=(пароль пользователя)
+````
+
+
+Сгенерировать контейнер
+```bash
+docker compose build \
+&& docker compose up -d
+```
+Переходим в терминал контейнера
+```bash
+docker exec -it gromovo-php-fpm-1 /bin/bash
+```
+
+Установить зависимости
 ```bash
 composer install
+```
+Сгенерировать ключ, сслылку на storage; выполняем миграции и создаём уз админа
+```bash
+php artisan key:generate \
+&& php artisan storage:link \
+&& php artisan migrate \
+&& php artisan orchid:admin
+```
 
-php artisan key:generate
-php artisan storage:link
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
-#For Production:
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
-php artisan migrate
-#~~~~~~~~~~~
-#For dev
-npm install
-vite dev
+For Production:
+```bash
+php artisan config:cache \
+&& php artisan route:cache \
+&& php artisan view:cache
+```
+For dev:
+```bash
+php artisan DB:seed
 #~~~~~~~~~~~ 
 ```
 # API
