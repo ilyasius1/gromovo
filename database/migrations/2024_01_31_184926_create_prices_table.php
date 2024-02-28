@@ -27,7 +27,7 @@ return new class extends Migration
                 ->on('packages')
                 ->restrictOnDelete();
             $table->unsignedInteger('rate');
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

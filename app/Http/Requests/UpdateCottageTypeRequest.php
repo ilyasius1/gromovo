@@ -23,7 +23,13 @@ class UpdateCottageTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cottageType.name' => ['required','min:1','max:255', Rule::unique('App\Models\CottageType','name')->ignore($this->route()->cottageType)],
+            'cottageType.name' => [
+                'required',
+                'min:1',
+                'max:255',
+                Rule::unique('App\Models\CottageType','name')
+                    ->ignore($this->route()->cottageType)
+            ],
         ];
     }
 }

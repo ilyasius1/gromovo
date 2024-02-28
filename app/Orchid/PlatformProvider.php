@@ -43,6 +43,32 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.house')
                 ->route('platform.cottages'),
 
+            Menu::make('Периоды')
+                ->title('Цены')
+                ->icon('bs.house')
+                ->route('platform.periods'),
+
+            Menu::make('Пакеты')
+                ->icon('bs.house')
+                ->route('platform.packages'),
+
+            Menu::make('Цены')
+                ->icon('bs.house')
+                ->route('platform.prices'),
+
+            Menu::make('Категории услуг')
+                ->title('Услуги')
+                ->icon('bs.house')
+                ->route('platform.serviceCategories'),
+
+            Menu::make('Услуги')
+                ->icon('bs.house')
+                ->route('platform.services'),
+
+            Menu::make('Галереи')
+                ->icon('bs.house')
+                ->route('platform.galleries'),
+
 //            Menu::make('Get Started')
 //                ->icon('bs.book')
 //                ->title('Navigation')

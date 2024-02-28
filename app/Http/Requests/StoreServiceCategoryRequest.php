@@ -11,7 +11,7 @@ class StoreServiceCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreServiceCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'serviceCategory.name' => 'required|min:1|max:255|unique:App\Models\ServiceCategory,name',
         ];
     }
 }

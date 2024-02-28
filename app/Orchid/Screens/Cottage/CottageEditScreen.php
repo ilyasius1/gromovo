@@ -41,8 +41,7 @@ class CottageEditScreen extends Screen
     public function __construct(
         protected CottageService $cottageService,
     )
-    {
-    }
+    {}
 
 
     /**
@@ -67,7 +66,7 @@ class CottageEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->cottageExists() ? 'Редактирование коттеджа ' . $this->cottage->name : 'Create cottage';
+        return $this->cottageExists() ? 'Редактирование коттеджа ' . $this->cottage->name : 'Создание коттеджа';
     }
 
     /**
@@ -116,28 +115,28 @@ class CottageEditScreen extends Screen
             ]),
             Layout::accordion([
                 'Галерея' => Layout::wrapper('admin.gallery', [
-                        'gallery' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->mainGallery]),
+                        'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->mainGallery]),
                         'fields' => Layout::columns([
                             new CottageGalleryEditLayout('main')
                         ])
                 ]),
                 $this->cottage?->name . ' план' => Layout::wrapper('admin.gallery', [
-                    'gallery' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->schemaGallery]),
+                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->schemaGallery]),
                     'fields' => Layout::columns([
                         new CottageGalleryEditLayout('schema')
                     ])
                 ]),
                 $this->cottage?->name . ' зимой' => Layout::wrapper('admin.gallery', [
-                    'gallery' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->winterGallery]),
+                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->winterGallery]),
                     'fields' => Layout::columns([
                         new CottageGalleryEditLayout('winter')])
                 ]),
                 $this->cottage?->name . ' летом' => Layout::wrapper('admin.gallery', [
-                    'gallery' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->summerGallery]),
+                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->summerGallery]),
                     'fields' => Layout::columns([
                         new CottageGalleryEditLayout('summer')])
                 ]),
-            ])->canSee($this->cottageExists()),
+            ])
         ];
     }
 
@@ -150,22 +149,7 @@ class CottageEditScreen extends Screen
      */
     public function update(Cottage $cottage, UpdateCottageRequest $request): RedirectResponse//: RedirectResponse
     {
-        $attachmentsArray = $request->validated('images')?? [];
-        $attachments = Attachment::findMany($attachmentsArray);
-        foreach ($attachmentsArray as $key => $attachments_block) {
-            $galleryField = $key . '_gallery_id';
-            $gallery_id = $cottage->$galleryField;
-            foreach ($attachments_block as $attachment_id) {
-                $attachment = $attachments->find($attachment_id);
-                Image::create([
-                    'name' => $attachment->original_name,
-                    'gallery_id' => $gallery_id,
-                    'attachment_id' => $attachment_id
-                ]);
-            }
-        }
-
-        $cottage->fill($request->validated('cottage'))->save();
+        $this->cottageService->update($cottage, $request->validated());
         Alert::info('You have successfully created a cottage.');
         return redirect()->route('platform.cottages');
     }
@@ -178,7 +162,7 @@ class CottageEditScreen extends Screen
      */
     public function store(StoreCottageRequest $request): RedirectResponse
     {
-        $cottage = $this->cottageService->createCottage($request->validated('cottage'));
+        $cottage = $this->cottageService->createCottage($request->validated());
         Alert::info('You have successfully created a cottage.');
         return redirect()->route('platform.cottages.edit', ['cottage' => $cottage]);
     }

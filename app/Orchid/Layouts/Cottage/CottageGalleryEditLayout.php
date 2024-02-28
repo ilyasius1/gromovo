@@ -34,7 +34,7 @@ class CottageGalleryEditLayout extends Rows
             Upload::make("images.$this->galleryName")
                 ->title('Добавить фотографии')
                     ->acceptedFiles('image/*')
-                ->maxFileSize(30)
+                ->maxFileSize(20)
                 ->horizontal(),
         ];
     }

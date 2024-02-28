@@ -17,15 +17,6 @@ use Orchid\Support\Color;
 class CottageEditLayout extends Rows
 {
     /**
-     * Used to create the title of a group of form elements.
-     *
-     * @var string|null
-     */
-    protected $title;
-
-//    protected string $target = 'cottage';
-
-    /**
      * Get the fields elements to be displayed.
      *
      * @return Field[]
@@ -47,6 +38,8 @@ class CottageEditLayout extends Rows
             TextArea::make('cottage.description')
                 ->title('Описание'),
             Input::make('cottage.area')
+                ->type('number')
+                ->min(0)
                 ->title('Площадь, м²')
                 ->placeholder('Площадь')
                 ->help(''),

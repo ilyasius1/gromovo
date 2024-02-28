@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateServiceCategoryRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateServiceCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,15 @@ class UpdateServiceCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        dump($this);
         return [
-            //
+            'serviceCategory.name' => [
+                'required',
+                'min:1',
+                'max:255',
+                Rule::unique('App\Models\ServiceCategory','name')
+                    ->ignore($this->route()->serviceCategory)
+            ],
         ];
     }
 }

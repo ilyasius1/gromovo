@@ -3,7 +3,9 @@
 namespace App\Orchid\Screens\CottageType;
 
 use App\Models\CottageType;
+use Carbon\CarbonImmutable;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
 use Orchid\Support\Color;
@@ -58,11 +60,23 @@ class CottageTypeListScreen extends Screen
                     }),
                 TD::make('name', 'Название')
                     ->render(function (CottageType $cottageType) {
-                        return Link::make((string)$cottageType->name)
+                        return Link::make($cottageType->name)
                             ->route('platform.cottageTypes.edit', $cottageType);
                     }),
-                TD::make('created_at', 'Дата создания')->defaultHidden(),
-                TD::make('updated_at', 'Дата изменения')->defaultHidden()
+                TD::make('created_at', 'Дата создания')
+                    ->sort()
+                    ->filter(DateRange::make())
+                    ->render(function (CottageType $cottageType){
+                        return CarbonImmutable::make($cottageType->created_at)
+                            ->format('d.m.Y H:i:s');
+                    })->defaultHidden(),
+                TD::make('updated_at', 'Дата изменения')
+                    ->sort()
+                    ->filter(DateRange::make())
+                    ->render(function (CottageType $cottageType){
+                        return CarbonImmutable::make($cottageType->updated_at)
+                            ->format('d.m.Y H:i:s');
+                    })->defaultHidden()
             ])
         ];
     }
