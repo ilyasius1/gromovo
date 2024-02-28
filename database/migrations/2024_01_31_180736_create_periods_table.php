@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start');
             $table->date('end');
             $table->boolean('is_holiday')->default(false);
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ class StoreServiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service.name' => 'required|min:1|max:255|unique:App\Models\Service,name',
+            'service.service_category_id' => 'required|exists:App\Models\ServiceCategory,id',
+            'service.attention' => 'nullable',
+            'service.price' => 'nullable',
+            'service.price_per_hour' => 'nullable',
+            'service.price_per_day' => 'nullable',
         ];
     }
 }

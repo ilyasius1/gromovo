@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
+/**
+ * @property array $cottage
+ */
 class StoreCottageRequest extends FormRequest
 {
     /**
@@ -67,7 +69,11 @@ class StoreCottageRequest extends FormRequest
             'cottage.floor1_features' => 'nullable',
             'cottage.floor2_features' => 'nullable',
             'cottage.floor3_features' => 'nullable',
-            'cottage.is_active' => 'boolean'
+            'cottage.is_active' => 'boolean',
+            'images.main' => 'nullable',
+            'images.schema' => 'nullable',
+            'images.winter' => 'nullable',
+            'images.summer' => 'nullable'
         ];
     }
 

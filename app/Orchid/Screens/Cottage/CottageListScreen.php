@@ -32,9 +32,10 @@ class CottageListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'cottages' => Cottage::with('cottageType')
-                                ->select('id','name', 'cottage_type_id', 'area' ,'floors','is_active')
-                                ->filters()->defaultSort('id')
+            'cottages' => Cottage::filters()
+                                ->defaultSort('id')
+                                ->with('cottageType')
+                                ->select('id', 'name', 'cottage_type_id', 'area', 'floors', 'is_active', 'created_at', 'updated_at')
                                 ->paginate(20)
         ];
     }

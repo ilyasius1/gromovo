@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +13,7 @@ class StorePackageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,10 @@ class StorePackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'package.name' => 'required|min:1|max:255|unique:App\Models\Package,name',
+            'package.days_start' => 'required|numeric|min:1|max:7',
+            'package.days_end' => 'required|numeric|min:1|max:7',
+            'package.nights' => 'required|numeric|min:1|max:366'
         ];
     }
 }

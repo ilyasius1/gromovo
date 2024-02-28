@@ -15,9 +15,21 @@ use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Gallery\GalleryEditScreen;
+use App\Orchid\Screens\Gallery\GalleryListScreen;
+use App\Orchid\Screens\Package\PackageEditScreen;
+use App\Orchid\Screens\Package\PackageListScreen;
+use App\Orchid\Screens\Period\PeriodEditScreen;
+use App\Orchid\Screens\Period\PeriodListScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Price\PriceEditScreen;
+use App\Orchid\Screens\Price\PriceListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\Service\ServiceEditScreen;
+use App\Orchid\Screens\Service\ServiceListScreen;
+use App\Orchid\Screens\ServiceCategory\ServiceCategoryEditScreen;
+use App\Orchid\Screens\ServiceCategory\ServiceCategoryListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -62,6 +74,78 @@ Route::screen('cottages/create', CottageEditScreen::class)
 // Cottages > Cottage
 Route::screen('cottages/{cottage}/edit', CottageEditScreen::class)
     ->name('platform.cottages.edit');
+
+// Periods
+Route::screen('periods', PeriodListScreen::class)
+    ->name('platform.periods');
+
+// Periods > Create
+Route::screen('periods/create', PeriodEditScreen::class)
+    ->name('platform.periods.create');
+
+// Periods > Period
+Route::screen('periods/{period}/edit', PeriodEditScreen::class)
+    ->name('platform.periods.edit');
+
+// Packages
+Route::screen('packages', PackageListScreen::class)
+    ->name('platform.packages');
+
+// Packages > Create
+Route::screen('packages/create', PackageEditScreen::class)
+    ->name('platform.packages.create');
+
+// Packages > Package
+Route::screen('packages/{package}/edit', PackageEditScreen::class)
+    ->name('platform.packages.edit');
+
+// Prices
+Route::screen('prices', PriceListScreen::class)
+    ->name('platform.prices');
+
+// Prices > Create
+Route::screen('prices/create', PriceEditScreen::class)
+    ->name('platform.prices.create');
+
+// Prices > Cottage
+Route::screen('prices/{price}/edit', PriceEditScreen::class)
+    ->name('platform.prices.edit');
+
+// ServiceCategories
+Route::screen('service-categories', ServiceCategoryListScreen::class)
+    ->name('platform.serviceCategories');
+
+// ServiceCategories > Create
+Route::screen('service-categories/create', ServiceCategoryEditScreen::class)
+    ->name('platform.serviceCategories.create');
+
+// ServiceCategories > Cottage
+Route::screen('service-categories/{serviceCategory}/edit', ServiceCategoryEditScreen::class)
+    ->name('platform.serviceCategories.edit');
+
+// Services
+Route::screen('services', ServiceListScreen::class)
+    ->name('platform.services');
+
+// Services > Create
+Route::screen('services/create', ServiceEditScreen::class)
+    ->name('platform.services.create');
+
+// Services > Service
+Route::screen('services/{service}/edit', ServiceEditScreen::class)
+    ->name('platform.services.edit');
+
+// Galleries
+Route::screen('galleries', GalleryListScreen::class)
+    ->name('platform.galleries');
+
+// Galleries > Create
+Route::screen('galleries/create', GalleryEditScreen::class)
+    ->name('platform.galleries.create');
+
+// Galleries > Service
+Route::screen('galleries/{gallery}/edit', GalleryEditScreen::class)
+    ->name('platform.galleries.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

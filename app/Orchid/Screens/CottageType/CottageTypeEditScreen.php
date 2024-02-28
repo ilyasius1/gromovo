@@ -34,6 +34,7 @@ class CottageTypeEditScreen extends Screen
      */
     public function query(CottageType $cottageType): iterable
     {
+        $this->cottageType = $cottageType;
         return [
             'cottageType' => $cottageType
         ];
@@ -57,7 +58,7 @@ class CottageTypeEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('Создать коттедж')
+            Button::make('Создать тип коттеджа')
                 ->type(Color::SUCCESS)
                 ->icon('save')
                 ->method('store')
@@ -95,6 +96,17 @@ class CottageTypeEditScreen extends Screen
                     ->title('Название')
                     ->placeholder('Введите название')
                     ->help(''),
+
+                Button::make('Создать тип коттеджа')
+                    ->type(Color::SUCCESS)
+                    ->icon('save')
+                    ->method('store')
+                    ->canSee(!$this->cottageTypeExists()),
+                Button::make('Сохранить')
+                    ->type(Color::SUCCESS)
+                    ->icon('save')
+                    ->method('update')
+                    ->canSee($this->cottageTypeExists())
             ])
         ];
     }

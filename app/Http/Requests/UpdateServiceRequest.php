@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateServiceRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateServiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,18 @@ class UpdateServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service.name' => [
+                'required',
+                'min:1',
+                'max:255',
+                Rule::unique('App\Models\Service','name')
+                    ->ignore($this->route()->service)
+            ],
+            'service.service_category_id' => 'required|exists:App\Models\ServiceCategory,id',
+            'service.attention' => 'nullable',
+            'service.price' => 'nullable',
+            'service.price_per_hour' => 'nullable',
+            'service.price_per_day' => 'nullable',
         ];
     }
 }

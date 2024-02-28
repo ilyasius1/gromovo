@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 
+/**
+ * @property array $cottage
+ */
 class UpdateCottageRequest extends StoreCottageRequest
 {
     /**
@@ -22,7 +25,13 @@ class UpdateCottageRequest extends StoreCottageRequest
     public function rules(): array
     {
         return [
-            'cottage.name' => ['required','min:1','max:255', Rule::unique('App\Models\Cottage','name')->ignore($this->route()->cottage)],
+            'cottage.name' => [
+                'required',
+                'min:1',
+                'max:255',
+                Rule::unique('App\Models\Cottage','name')
+                    ->ignore($this->route()->cottage)
+            ],
             'cottage.cottage_type_id' => 'required|exists:App\Models\CottageType,id',
             'cottage.description' => 'nullable',
             'cottage.area' => 'numeric|min:0',
