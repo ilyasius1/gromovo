@@ -1,16 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Admin;
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IndexPriceRequest;
 use App\Http\Requests\StorePriceRequest;
 use App\Http\Requests\UpdatePriceRequest;
+use App\Http\Resources\PriceCollection;
 use App\Http\Resources\PriceResource;
 use App\Models\Price;
 use App\QueryBuilders\PricesQueryBuilder;
 use App\QueryBuilders\QueryBuilder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\View\View;
 
 class PriceController extends Controller
 {
@@ -20,21 +25,25 @@ class PriceController extends Controller
     {
         $this->pricesQueryBuilder = $pricesQueryBuilder;
     }
+
     /**
      * Display a listing of the resource.
      * @param IndexPriceRequest $request
      * @return AnonymousResourceCollection
      */
-    public function index(IndexPriceRequest $request): AnonymousResourceCollection
+    public function index(IndexPriceRequest $request): AnonymousResourceCollection|PriceCollection|View
     {
         $cottageId = $request->validated('cottage');
-        if($cottageId) {
-            $prices = $this->pricesQueryBuilder->getByCottage($cottageId);
-        }
-        else {
-            $prices = $this->pricesQueryBuilder->getAll();
-        }
-        return PriceResource::collection($prices);
+//        if($cottageId) {
+//            $prices = $this->pricesQueryBuilder->getByCottage($cottageId);
+//        }
+//        else {
+        $prices = Cache::remember('prices', 60*60*24*7, function (){
+            return $this->pricesQueryBuilder->getAllWithRelations();
+        });
+
+//        }
+        return new PriceCollection($prices);
     }
 
     /**
