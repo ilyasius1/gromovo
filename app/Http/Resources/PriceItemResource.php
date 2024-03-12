@@ -1,12 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ServiceCategoryResource extends JsonResource
+/**
+ * @property mixed $rate
+ * @property mixed $days
+ * @property mixed $packageName
+ */
+class PriceItemResource extends JsonResource
 {
+    public static $wrap = null;
     /**
      * Transform the resource into an array.
      *
@@ -14,11 +22,10 @@ class ServiceCategoryResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $services = ServiceResource::collection($this->services);
         return [
-            'id' => $this->id,
-            'serviceName' => $this->name,
-            'prices' => $services,
+            'name' => $this->packageName,
+            'days' => $this->days,
+            'rate' => $this->rate
         ];
     }
 }

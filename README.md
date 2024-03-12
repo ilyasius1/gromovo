@@ -20,7 +20,7 @@ docker compose build \
 ```
 Переходим в терминал контейнера
 ```bash
-docker exec -it gromovo-php-fpm-1 /bin/bash
+docker exec -it gromovo-api-php-fpm-1 /bin/bash
 ```
 
 Установить зависимости
