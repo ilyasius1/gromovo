@@ -15,7 +15,7 @@ class ServiceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'id' => $this->when($request->user() && $request->user()->isAdmin, $this->id),
             'name' => $this->name,
             'serviceCategoryId' => $this->when($request->user() && $request->user()->isAdmin, $this->service_category_id),
             'attention'  => $this->attention,

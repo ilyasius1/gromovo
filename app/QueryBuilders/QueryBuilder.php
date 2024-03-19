@@ -10,5 +10,18 @@ abstract class QueryBuilder
 {
     abstract public function getModel(): Builder;
 
-    abstract public function getAll(): Collection | LengthAwarePaginator;
+    public function getAll(): Collection|LengthAwarePaginator
+    {
+        return $this->getModel()->get();
+    }
+
+    /**
+     * @param int $perPage
+     * @return LengthAwarePaginator
+     */
+    public function getPaginate(int $perPage = 10): LengthAwarePaginator
+    {
+        return $this->getModel()->paginate($perPage);
+    }
+
 }
