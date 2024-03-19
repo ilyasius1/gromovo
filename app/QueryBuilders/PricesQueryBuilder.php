@@ -6,28 +6,16 @@ namespace App\QueryBuilders;
 
 use App\Models\Price;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class PricesQueryBuilder extends QueryBuilder
 {
-
     /**
      * @return Builder
      */
     public function getModel(): Builder
     {
         return Price::query();
-    }
-
-    /**
-     * Получить все цены
-     * @return Collection|LengthAwarePaginator
-     */
-    public function getAll(): Collection|LengthAwarePaginator
-    {
-        return $this->getModel()->get();
     }
 
     /**
@@ -45,16 +33,6 @@ class PricesQueryBuilder extends QueryBuilder
                     ->get();
     }
 
-    /**
-     * Получить цены с пагинацией
-     *
-     * @param int $perPage
-     * @return LengthAwarePaginator
-     */
-    public function getPaginate(int $perPage = 10): LengthAwarePaginator
-    {
-        return $this->getModel()->paginate($perPage);
-    }
 
     /**
      * Получить цены со связанными типами коттеджей, периодами и пакетами

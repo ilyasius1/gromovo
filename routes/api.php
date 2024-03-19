@@ -47,10 +47,6 @@ Route::prefix('v1')->group(function () {
         Route::get('/services','index');
         Route::get('/services/{service}','show');
     });
-    Route::controller(PeriodController::class)->group(function () {
-        Route::get('/periods','index');
-        Route::get('/periods/{period}','show');
-    });
     Route::controller(PriceController::class)->group(function () {
         Route::get('/prices','index');
         Route::get('/prices/{price}','show');

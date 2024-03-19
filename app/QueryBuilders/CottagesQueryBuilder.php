@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 
 class CottagesQueryBuilder extends QueryBuilder
 {
-
     public function getModel(): Builder
     {
         return Cottage::query();
@@ -36,10 +35,5 @@ class CottagesQueryBuilder extends QueryBuilder
         return $this->getModel()
             ->join('cottage_types', 'cottages.cottage_type_id', '=','cottage_types.id')
             ->paginate($perPage);
-    }
-
-    public function getPaginate($perPage = 10): LengthAwarePaginator
-    {
-        return $this->getModel()->paginate($perPage);
     }
 }

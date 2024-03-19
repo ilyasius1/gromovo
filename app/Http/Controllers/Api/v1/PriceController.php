@@ -13,9 +13,8 @@ use App\Http\Resources\PriceResource;
 use App\Models\Price;
 use App\QueryBuilders\PricesQueryBuilder;
 use App\QueryBuilders\QueryBuilder;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\View\View;
 
 class PriceController extends Controller
 {
@@ -29,21 +28,21 @@ class PriceController extends Controller
     /**
      * Display a listing of the resource.
      * @param IndexPriceRequest $request
-     * @return AnonymousResourceCollection
+     * @return ResourceCollection
      */
-    public function index(IndexPriceRequest $request): AnonymousResourceCollection|PriceCollection|View
+    public function index(IndexPriceRequest $request):  ResourceCollection
     {
         $cottageId = $request->validated('cottage');
-//        if($cottageId) {
-//            $prices = $this->pricesQueryBuilder->getByCottage($cottageId);
-//        }
-//        else {
-        $prices = Cache::remember('prices', 60*60*24*7, function (){
-            return $this->pricesQueryBuilder->getAllWithRelations();
-        });
-
-//        }
-        return new PriceCollection($prices);
+        if($cottageId) {
+            $prices = $this->pricesQueryBuilder->getByCottage($cottageId);
+            return PriceResource::collection($prices);
+        }
+        else {
+            $prices = Cache::remember('prices', 60*60*24*7, function (){
+                return $this->pricesQueryBuilder->getAllWithRelations();
+            });
+            return new PriceCollection($prices);
+        }
     }
 
     /**

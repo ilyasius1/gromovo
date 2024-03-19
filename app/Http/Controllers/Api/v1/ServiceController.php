@@ -5,25 +5,30 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreServiceRequest;
-use App\Http\Requests\UpdateServiceRequest;
-use App\Http\Resources\ServiceCategoryResource;
+use App\Http\Resources\ServiceCollection;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
-use App\Models\ServiceCategory;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\QueryBuilders\ServicesQueryBuilder;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceController extends Controller
 {
+    public function __construct(protected ServicesQueryBuilder $servicesQueryBuilder)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return AnonymousResourceCollection
+     * @return ResourceCollection
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): ResourceCollection
     {
-        $services = ServiceCategory::all();
-        return ServiceCategoryResource::collection($services);
+        $services = Cache::remember('services', 60*60*24*7, function () {
+            return $this->servicesQueryBuilder->getAllWithCategories();
+        });
+        return ServiceCollection::make($services);
     }
 
     /**
