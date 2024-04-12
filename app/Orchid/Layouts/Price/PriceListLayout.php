@@ -31,46 +31,46 @@ class PriceListLayout extends Table
     {
         return [
             TD::make('id', 'id')
-                ->render(function (Price $price) {
-                    return Link::make((string)$price->id)
-                        ->route('platform.prices.edit', $price);
-                }),
+              ->render(function (Price $price) {
+                  return Link::make((string)$price->id)
+                             ->route('platform.prices.edit', $price);
+              }),
             TD::make('name', 'Название')
-                ->render(function (Price $price) {
-                    return Link::make((string)$price->name)
-                        ->route('platform.prices.edit', $price);
-                }),
+              ->render(function (Price $price) {
+                  return Link::make((string)$price->name)
+                             ->route('platform.prices.edit', $price);
+              }),
             TD::make('cottageType', 'Тип коттеджа')
-                ->render(function (Price $price) {
-                    return Link::make((string)$price->cottageType->name)
-                        ->route('platform.cottageTypes.edit', $price->cottageType);
-                }),
+              ->render(function (Price $price) {
+                  return Link::make((string)$price->cottageType->name)
+                             ->route('platform.cottageTypes.edit', $price->cottageType);
+              }),
             TD::make('period', 'Период')
-                ->render(function (Price $price) {
-                    return Link::make((string)$price->period->name)
-                        ->route('platform.periods.edit', $price->period);
-                }),
+              ->render(function (Price $price) {
+                  return Link::make((string)$price->period->name)
+                             ->route('platform.periods.edit', $price->period);
+              }),
             TD::make('start', 'Дата начала')
-                ->render(function (Price $price){
-                    return CarbonImmutable::make($price->period->start)->format('d.m.Y');
-                })
-                ->defaultHidden(),
+              ->render(function (Price $price) {
+                  return CarbonImmutable::make($price->period->start)->format('d.m.Y');
+              })
+              ->defaultHidden(),
             TD::make('end', 'Дата окончания')
-                ->render(function (Price $price){
-                    return CarbonImmutable::make($price->period->end)->format('d.m.Y');
-                })
-                ->defaultHidden(),
+              ->render(function (Price $price) {
+                  return CarbonImmutable::make($price->period->end)->format('d.m.Y');
+              })
+              ->defaultHidden(),
             TD::make('package', 'Пакет')
-                ->render(function (Price $price) {
-                    return Link::make((string)$price->package->name)
-                        ->route('platform.prices.edit', $price->package);
-                }),
+              ->render(function (Price $price) {
+                  return Link::make((string)$price->package->name)
+                             ->route('platform.prices.edit', $price->package);
+              }),
             TD::make('nights', 'Цена')
-                ->render(fn (Price $price) => $price->rate),
+              ->render(fn(Price $price) => $price->rate),
             TD::make('is_active', 'Активна')
-                ->render(function (Price $price){
-                    return $price->is_active ? 'Да' : 'Нет';
-                })
+              ->render(function (Price $price) {
+                  return $price->is_active ? 'Да' : 'Нет';
+              })
         ];
     }
 }

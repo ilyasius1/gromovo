@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -18,10 +20,10 @@ class ServiceResource extends JsonResource
             'id' => $this->when($request->user() && $request->user()->isAdmin, $this->id),
             'name' => $this->name,
             'serviceCategoryId' => $this->when($request->user() && $request->user()->isAdmin, $this->service_category_id),
-            'attention'  => $this->attention,
-            'price'  => $this->price,
-            'pricePerHour'  => $this->price_per_hour,
-            'pricePerDay'  => $this->price_per_day
+            'attention' => $this->attention,
+            'price' => $this->price,
+            'pricePerHour' => $this->price_per_hour,
+            'pricePerDay' => $this->price_per_day
         ];
     }
 }

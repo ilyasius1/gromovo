@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\CottageType;
 
 use App\Http\Requests\CottageType\StoreCottageTypeRequest;

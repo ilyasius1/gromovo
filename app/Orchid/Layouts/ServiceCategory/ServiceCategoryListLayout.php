@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts\ServiceCategory;
 
 
@@ -30,25 +32,25 @@ class ServiceCategoryListLayout extends Table
     {
         return [
             TD::make('id', 'id')
-                ->render(function (ServiceCategory $serviceCategory) {
-                    return Link::make((string)$serviceCategory->id)
-                        ->route('platform.serviceCategories.edit', $serviceCategory);
-                }),
+              ->render(function (ServiceCategory $serviceCategory) {
+                  return Link::make((string)$serviceCategory->id)
+                             ->route('platform.serviceCategories.edit', $serviceCategory);
+              }),
             TD::make('name', 'Название')
-                ->render(function (ServiceCategory $serviceCategory) {
-                    return Link::make((string)$serviceCategory->name)
-                        ->route('platform.serviceCategories.edit', $serviceCategory);
-                }),
+              ->render(function (ServiceCategory $serviceCategory) {
+                  return Link::make((string)$serviceCategory->name)
+                             ->route('platform.serviceCategories.edit', $serviceCategory);
+              }),
             TD::make('created_at', 'Дата создания')
-                ->render(function (ServiceCategory $serviceCategory){
-                    return CarbonImmutable::make($serviceCategory->created_at)->format('d.m.Y H:i:s');
-                })
-                ->defaultHidden(),
+              ->render(function (ServiceCategory $serviceCategory) {
+                  return CarbonImmutable::make($serviceCategory->created_at)->format('d.m.Y H:i:s');
+              })
+              ->defaultHidden(),
             TD::make('updated_at', 'Дата изменения')
-                ->render(function (ServiceCategory $serviceCategory){
-                    return CarbonImmutable::make($serviceCategory->updated_at)->format('d.m.Y H:i:s');
-                })
-                ->defaultHidden()
+              ->render(function (ServiceCategory $serviceCategory) {
+                  return CarbonImmutable::make($serviceCategory->updated_at)->format('d.m.Y H:i:s');
+              })
+              ->defaultHidden()
         ];
     }
 }

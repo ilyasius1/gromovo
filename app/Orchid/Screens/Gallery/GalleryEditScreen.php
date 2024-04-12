@@ -7,7 +7,6 @@ namespace App\Orchid\Screens\Gallery;
 use App\Http\Requests\Gallery\StoreGalleryRequest;
 use App\Http\Requests\Gallery\UpdateGalleryRequest;
 use App\Models\Gallery;
-use App\Orchid\Layouts\Gallery\GalleryEditLayout;
 use App\Services\GalleryService;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Actions\Button;
@@ -34,7 +33,8 @@ class GalleryEditScreen extends Screen
     public function __construct(
         protected GalleryService $galleryService
     )
-    {}
+    {
+    }
 
     /**
      * Fetch data to be displayed on the screen.
@@ -69,22 +69,22 @@ class GalleryEditScreen extends Screen
     {
         return [
             Button::make('Создать галерею')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->galleryExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->galleryExists()),
 
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee((bool)$this->galleryExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee((bool)$this->galleryExists()),
 
             Button::make('Remove')
-                ->type(Color::DANGER)
-                ->icon('trash')
-                ->method('remove')
-                ->canSee((bool)$this->galleryExists()),
+                  ->type(Color::DANGER)
+                  ->icon('trash')
+                  ->method('remove')
+                  ->canSee((bool)$this->galleryExists()),
 
             Link::make('Вернуться к списку')
                 ->type(Color::BASIC)
@@ -102,30 +102,30 @@ class GalleryEditScreen extends Screen
     {
         return [
             Layout::rows([
-            Input::make('gallery.name')
-                ->required()
-                ->title('Название')
-                ->placeholder('Название галереи'),
-            Input::make('gallery.name_eng')
-                ->title('nameEng')
-                ->disabled(),
-            Input::make('gallery.description')
-                ->required()
-                ->title('Описание')
-                ->placeholder('Описание галереи'),
-        ]),
+                Input::make('gallery.name')
+                     ->required()
+                     ->title('Название')
+                     ->placeholder('Название галереи'),
+                Input::make('gallery.name_eng')
+                     ->title('nameEng')
+                     ->disabled(),
+                Input::make('gallery.description')
+                     ->required()
+                     ->title('Описание')
+                     ->placeholder('Описание галереи'),
+            ]),
             Layout::wrapper('admin.gallery', [
-                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->gallery->images ]),
-                    'fields' => Layout::columns([
-                        Layout::rows([
-                            Upload::make("images")
-                                ->title('Добавить фотографии')
-                                ->acceptedFiles('image/*')
-                                ->maxFileSize(20)
-                                ->horizontal(),
-                        ])
+                'imagesLayout' => Layout::view('admin.gallery_images', ['gallery' => $this->gallery->images]),
+                'fields' => Layout::columns([
+                    Layout::rows([
+                        Upload::make("images")
+                              ->title('Добавить фотографии')
+                              ->acceptedFiles('image/*')
+                              ->maxFileSize(20)
+                              ->horizontal(),
                     ])
-                ]),
+                ])
+            ]),
         ];
     }
 

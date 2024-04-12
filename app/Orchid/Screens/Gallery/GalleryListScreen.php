@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Gallery;
 
 use App\Models\Gallery;
@@ -58,15 +60,15 @@ class GalleryListScreen extends Screen
         return [
             Layout::table('galleries', [
                 TD::make('id', 'id')
-                    ->render(function (Gallery $gallery) {
-                        return Link::make((string)$gallery->id)
-                            ->route('platform.galleries.edit', $gallery);
-                    }),
+                  ->render(function (Gallery $gallery) {
+                      return Link::make((string)$gallery->id)
+                                 ->route('platform.galleries.edit', $gallery);
+                  }),
                 TD::make('name', 'Название')
-                    ->render(function (Gallery $gallery) {
-                        return Link::make((string)$gallery->name)
-                            ->route('platform.galleries.edit', $gallery);
-                    }),
+                  ->render(function (Gallery $gallery) {
+                      return Link::make((string)$gallery->name)
+                                 ->route('platform.galleries.edit', $gallery);
+                  }),
                 TD::make('name_eng', 'name_eng'),
                 TD::make('description', 'Описание'),
                 TD::make('main_image_id', 'main_image_id'),

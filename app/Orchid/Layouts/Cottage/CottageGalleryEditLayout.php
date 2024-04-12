@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Cottage;
 
 use Orchid\Screen\Field;
@@ -21,7 +23,9 @@ class CottageGalleryEditLayout extends Rows
 
     public function __construct(
         private readonly string $galleryName = 'main'
-    ) {}
+    )
+    {
+    }
 
     /**
      * Get the fields elements to be displayed.
@@ -32,10 +36,10 @@ class CottageGalleryEditLayout extends Rows
     {
         return [
             Upload::make("images.$this->galleryName")
-                ->title('Добавить фотографии')
-                    ->acceptedFiles('image/*')
-                ->maxFileSize(20)
-                ->horizontal(),
+                  ->title('Добавить фотографии')
+                  ->acceptedFiles('image/*')
+                  ->maxFileSize(20)
+                  ->horizontal(),
         ];
     }
 }

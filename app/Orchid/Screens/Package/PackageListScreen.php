@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Package;
 
 use App\Models\Package;
 use App\Orchid\Layouts\Package\PackageListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\TD;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Layout;
 
 class PackageListScreen extends Screen
 {

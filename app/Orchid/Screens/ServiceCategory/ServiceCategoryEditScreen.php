@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\ServiceCategory;
 
 use App\Http\Requests\ServiceCategory\StoreServiceCategoryRequest;
@@ -61,22 +63,22 @@ class ServiceCategoryEditScreen extends Screen
     {
         return [
             Button::make('Создать категорию')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->serviceCategoryExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->serviceCategoryExists()),
 
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee((bool)$this->serviceCategoryExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee((bool)$this->serviceCategoryExists()),
 
             Button::make('Remove')
-                ->type(Color::DANGER)
-                ->icon('trash')
-                ->method('remove')
-                ->canSee((bool)$this->serviceCategoryExists()),
+                  ->type(Color::DANGER)
+                  ->icon('trash')
+                  ->method('remove')
+                  ->canSee((bool)$this->serviceCategoryExists()),
 
             Link::make('Вернуться к списку')
                 ->type(Color::BASIC)
@@ -95,19 +97,19 @@ class ServiceCategoryEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('serviceCategory.name')
-                    ->title('Название')
-                    ->placeholder('Введите название'),
+                     ->title('Название')
+                     ->placeholder('Введите название'),
 
                 Button::make('Создать категорию')
-                    ->type(Color::SUCCESS)
-                    ->icon('save')
-                    ->method('store')
-                    ->canSee(!$this->serviceCategoryExists()),
+                      ->type(Color::SUCCESS)
+                      ->icon('save')
+                      ->method('store')
+                      ->canSee(!$this->serviceCategoryExists()),
                 Button::make('Сохранить')
-                    ->type(Color::SUCCESS)
-                    ->icon('save')
-                    ->method('update')
-                    ->canSee($this->serviceCategoryExists())
+                      ->type(Color::SUCCESS)
+                      ->icon('save')
+                      ->method('update')
+                      ->canSee($this->serviceCategoryExists())
             ])
         ];
     }
