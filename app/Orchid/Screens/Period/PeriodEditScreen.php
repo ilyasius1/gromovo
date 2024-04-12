@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Period;
 
-use App\Http\Requests\StorePeriodRequest;
-use App\Http\Requests\UpdatePeriodRequest;
+use App\Http\Requests\Period\StorePeriodRequest;
+use App\Http\Requests\Period\UpdatePeriodRequest;
 use App\Models\Period;
 use App\Orchid\Layouts\Period\PeriodEditLayout;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -121,7 +120,7 @@ class PeriodEditScreen extends Screen
      */
     public function update(Period $period, UpdatePeriodRequest $request): RedirectResponse
     {
-        $period->fill($request->validated('period'))->save();
+        $period->update($request->validated('period'));
         Alert::info('You have successfully updated a period.');
         return redirect()->route('platform.periods');
     }

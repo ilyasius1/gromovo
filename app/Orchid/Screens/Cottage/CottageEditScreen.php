@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Cottage;
 
-use App\Http\Requests\StoreCottageRequest;
-use App\Http\Requests\UpdateCottageRequest;
+use App\Http\Requests\Cottage\StoreCottageRequest;
+use App\Http\Requests\Cottage\UpdateCottageRequest;
 use App\Models\Cottage;
-use App\Models\Image;
 use App\Orchid\Layouts\Cottage\CottageEditLayout;
 use App\Orchid\Layouts\Cottage\CottageGalleryEditLayout;
 use App\Orchid\Presenters\CottagePresenter;
 use App\Services\CottageService;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Attachment\Models\Attachment;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -41,7 +39,8 @@ class CottageEditScreen extends Screen
     public function __construct(
         protected CottageService $cottageService,
     )
-    {}
+    {
+    }
 
 
     /**
@@ -78,22 +77,22 @@ class CottageEditScreen extends Screen
     {
         return [
             Button::make('Создать коттедж')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->cottageExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->cottageExists()),
 
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee((bool)$this->cottageExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee((bool)$this->cottageExists()),
 
             Button::make('Remove')
-                ->type(Color::DANGER)
-                ->icon('trash')
-                ->method('remove')
-                ->canSee((bool)$this->cottageExists()),
+                  ->type(Color::DANGER)
+                  ->icon('trash')
+                  ->method('remove')
+                  ->canSee((bool)$this->cottageExists()),
 
             Link::make('Вернуться к списку')
                 ->type(Color::BASIC)
@@ -115,24 +114,24 @@ class CottageEditScreen extends Screen
             ]),
             Layout::accordion([
                 'Галерея' => Layout::wrapper('admin.gallery', [
-                        'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->mainGallery]),
-                        'fields' => Layout::columns([
-                            new CottageGalleryEditLayout('main')
-                        ])
+                    'imagesLayout' => Layout::view('admin.gallery_images', ['gallery' => $this->cottage?->mainGallery]),
+                    'fields' => Layout::columns([
+                        new CottageGalleryEditLayout('main')
+                    ])
                 ]),
                 $this->cottage?->name . ' план' => Layout::wrapper('admin.gallery', [
-                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->schemaGallery]),
+                    'imagesLayout' => Layout::view('admin.gallery_images', ['gallery' => $this->cottage?->schemaGallery]),
                     'fields' => Layout::columns([
                         new CottageGalleryEditLayout('schema')
                     ])
                 ]),
                 $this->cottage?->name . ' зимой' => Layout::wrapper('admin.gallery', [
-                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->winterGallery]),
+                    'imagesLayout' => Layout::view('admin.gallery_images', ['gallery' => $this->cottage?->winterGallery]),
                     'fields' => Layout::columns([
                         new CottageGalleryEditLayout('winter')])
                 ]),
                 $this->cottage?->name . ' летом' => Layout::wrapper('admin.gallery', [
-                    'imagesLayout' => Layout::view('admin.gallery_images',  [ 'gallery' => $this->cottage?->summerGallery]),
+                    'imagesLayout' => Layout::view('admin.gallery_images', ['gallery' => $this->cottage?->summerGallery]),
                     'fields' => Layout::columns([
                         new CottageGalleryEditLayout('summer')])
                 ]),

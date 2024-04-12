@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\IndexPriceRequest;
-use App\Http\Requests\StorePriceRequest;
-use App\Http\Requests\UpdatePriceRequest;
+use App\Http\Requests\Price\IndexPriceRequest;
+use App\Http\Requests\Price\StorePriceRequest;
+use App\Http\Requests\Price\UpdatePriceRequest;
 use App\Http\Resources\PriceCollection;
 use App\Http\Resources\PriceResource;
 use App\Models\Price;
@@ -30,15 +30,14 @@ class PriceController extends Controller
      * @param IndexPriceRequest $request
      * @return ResourceCollection
      */
-    public function index(IndexPriceRequest $request):  ResourceCollection
+    public function index(IndexPriceRequest $request): ResourceCollection
     {
         $cottageId = $request->validated('cottage');
-        if($cottageId) {
+        if ($cottageId) {
             $prices = $this->pricesQueryBuilder->getByCottage($cottageId);
             return PriceResource::collection($prices);
-        }
-        else {
-            $prices = Cache::remember('prices', 60*60*24*7, function (){
+        } else {
+            $prices = Cache::remember('prices', 60 * 60 * 24 * 7, function () {
                 return $this->pricesQueryBuilder->getAllWithRelations();
             });
             return new PriceCollection($prices);

@@ -68,7 +68,7 @@ class Price extends Model
      */
     public function scopeActive(Builder $query): void
     {
-        $query->where('is_active');
+        $query->where('is_active', '=', true);
     }
 
     // Relations
@@ -84,7 +84,7 @@ class Price extends Model
     /**
      * @return BelongsTo
      */
-    public function period():BelongsTo
+    public function period(): BelongsTo
     {
         return $this->belongsTo(Period::class, 'period_id');
     }

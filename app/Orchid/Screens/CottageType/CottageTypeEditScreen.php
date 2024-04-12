@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Screens\CottageType;
 
-use App\Http\Requests\StoreCottageTypeRequest;
-use App\Http\Requests\UpdateCottageTypeRequest;
+use App\Http\Requests\CottageType\StoreCottageTypeRequest;
+use App\Http\Requests\CottageType\UpdateCottageTypeRequest;
 use App\Models\CottageType;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Actions\Button;
@@ -27,6 +27,7 @@ class CottageTypeEditScreen extends Screen
     {
         return (bool)$this->cottageType?->exists;
     }
+
     /**
      * Fetch data to be displayed on the screen.
      *
@@ -59,22 +60,22 @@ class CottageTypeEditScreen extends Screen
     {
         return [
             Button::make('Создать тип коттеджа')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->cottageTypeExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->cottageTypeExists()),
 
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee($this->cottageTypeExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee($this->cottageTypeExists()),
 
             Button::make('Remove')
-                ->type(Color::DANGER)
-                ->icon('trash')
-                ->method('remove')
-                ->canSee($this->cottageTypeExists()),
+                  ->type(Color::DANGER)
+                  ->icon('trash')
+                  ->method('remove')
+                  ->canSee($this->cottageTypeExists()),
 
             Link::make('Вернуться к списку')
                 ->type(Color::BASIC)
@@ -93,20 +94,20 @@ class CottageTypeEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('cottageType.name')
-                    ->title('Название')
-                    ->placeholder('Введите название')
-                    ->help(''),
+                     ->title('Название')
+                     ->placeholder('Введите название')
+                     ->help(''),
 
                 Button::make('Создать тип коттеджа')
-                    ->type(Color::SUCCESS)
-                    ->icon('save')
-                    ->method('store')
-                    ->canSee(!$this->cottageTypeExists()),
+                      ->type(Color::SUCCESS)
+                      ->icon('save')
+                      ->method('store')
+                      ->canSee(!$this->cottageTypeExists()),
                 Button::make('Сохранить')
-                    ->type(Color::SUCCESS)
-                    ->icon('save')
-                    ->method('update')
-                    ->canSee($this->cottageTypeExists())
+                      ->type(Color::SUCCESS)
+                      ->icon('save')
+                      ->method('update')
+                      ->canSee($this->cottageTypeExists())
             ])
         ];
     }
@@ -118,7 +119,7 @@ class CottageTypeEditScreen extends Screen
      */
     public function update(CottageType $cottageType, UpdateCottageTypeRequest $request): RedirectResponse//: RedirectResponse
     {
-        $cottageType->fill($request->validated('cottageType'))->save();
+        $cottageType->update($request->validated('cottageType'));
         Alert::info('You have successfully updated a cottage type.');
         return redirect()->route('platform.cottageTypes');
     }

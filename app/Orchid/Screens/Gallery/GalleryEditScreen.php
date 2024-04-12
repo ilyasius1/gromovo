@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Gallery;
 
-use App\Http\Requests\StoreGalleryRequest;
-use App\Http\Requests\UpdateGalleryRequest;
+use App\Http\Requests\Gallery\StoreGalleryRequest;
+use App\Http\Requests\Gallery\UpdateGalleryRequest;
 use App\Models\Gallery;
 use App\Orchid\Layouts\Gallery\GalleryEditLayout;
 use App\Services\GalleryService;
@@ -24,8 +24,6 @@ class GalleryEditScreen extends Screen
     protected ?Gallery $gallery = null;
 
     /**
-     * Is cottage exists
-     *
      * @return bool
      */
     protected function galleryExists(): bool

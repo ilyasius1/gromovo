@@ -69,6 +69,15 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.house')
                 ->route('platform.galleries'),
 
+            Menu::make('Анкеты клиентов')
+                ->title('Бронирование')
+                ->icon('bs.house')
+                ->route('platform.customerProfiles'),
+
+            Menu::make('Брони')
+                ->icon('bs.house')
+                ->route('platform.reservations'),
+
 //            Menu::make('Get Started')
 //                ->icon('bs.book')
 //                ->title('Navigation')

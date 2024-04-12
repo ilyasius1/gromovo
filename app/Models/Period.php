@@ -28,7 +28,7 @@ use Orchid\Screen\AsSource;
  * @property string updated_at
  *
  * @method static Builder|Period query()
- * @method static Period create()
+ * @method static Period create(array $fields)
  * @method Builder|Period active()
  * @method static Builder|Period filters()
  * @method static Builder defaultSort(string $column, string $direction = 'asc')
@@ -76,8 +76,8 @@ class Period extends Model
     public function getNameWithDatesAttribute()
     {
         return $this->attributes['name']
-            . ' (c ' . CarbonImmutable::make($this->attributes['start'])->format('d.m.Y')
-            . ' по ' . CarbonImmutable::make($this->attributes['end'])->format('d.m.Y') . ')';
+               . ' (c ' . CarbonImmutable::make($this->attributes['start'])->format('d.m.Y')
+               . ' по ' . CarbonImmutable::make($this->attributes['end'])->format('d.m.Y') . ')';
     }
 
     // Scopes

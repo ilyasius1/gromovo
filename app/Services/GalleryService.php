@@ -28,8 +28,8 @@ class GalleryService
      */
     public function updateGallery(Gallery $gallery, array $fields): void
     {
-        $gallery->fill($fields['gallery'])->save();
-        if(!empty($fields['images'])){
+        $gallery->update($fields['gallery']);
+        if (!empty($fields['images'])) {
             $this->attachImages($gallery, $fields['images']);
         }
     }
@@ -58,8 +58,7 @@ class GalleryService
      */
     public function deleteGallery(Gallery $gallery): void
     {
-        foreach ($gallery->images as $image)
-        {
+        foreach ($gallery->images as $image) {
             $image->attachment?->delete();
             $image->delete();
         }
