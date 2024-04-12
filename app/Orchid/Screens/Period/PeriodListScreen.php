@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Period;
 
 use App\Models\Period;
@@ -13,6 +15,7 @@ class PeriodListScreen extends Screen
     protected string $name = 'Периоды';
 
     protected string $description = 'Список периодов';
+
     /**
      * Fetch data to be displayed on the screen.
      *

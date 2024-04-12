@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\CottageType;
 
 use App\Models\CottageType;
@@ -54,29 +56,29 @@ class CottageTypeListScreen extends Screen
         return [
             Layout::table('cottageTypes', [
                 TD::make('id', 'id')
-                    ->render(function (CottageType $cottageType) {
-                        return Link::make((string)$cottageType->id)
-                            ->route('platform.cottageTypes.edit', $cottageType);
-                    }),
+                  ->render(function (CottageType $cottageType) {
+                      return Link::make((string)$cottageType->id)
+                                 ->route('platform.cottageTypes.edit', $cottageType);
+                  }),
                 TD::make('name', 'Название')
-                    ->render(function (CottageType $cottageType) {
-                        return Link::make($cottageType->name)
-                            ->route('platform.cottageTypes.edit', $cottageType);
-                    }),
+                  ->render(function (CottageType $cottageType) {
+                      return Link::make($cottageType->name)
+                                 ->route('platform.cottageTypes.edit', $cottageType);
+                  }),
                 TD::make('created_at', 'Дата создания')
-                    ->sort()
-                    ->filter(DateRange::make())
-                    ->render(function (CottageType $cottageType){
-                        return CarbonImmutable::make($cottageType->created_at)
-                            ->format('d.m.Y H:i:s');
-                    })->defaultHidden(),
+                  ->sort()
+                  ->filter(DateRange::make())
+                  ->render(function (CottageType $cottageType) {
+                      return CarbonImmutable::make($cottageType->created_at)
+                                            ->format('d.m.Y H:i:s');
+                  })->defaultHidden(),
                 TD::make('updated_at', 'Дата изменения')
-                    ->sort()
-                    ->filter(DateRange::make())
-                    ->render(function (CottageType $cottageType){
-                        return CarbonImmutable::make($cottageType->updated_at)
-                            ->format('d.m.Y H:i:s');
-                    })->defaultHidden()
+                  ->sort()
+                  ->filter(DateRange::make())
+                  ->render(function (CottageType $cottageType) {
+                      return CarbonImmutable::make($cottageType->updated_at)
+                                            ->format('d.m.Y H:i:s');
+                  })->defaultHidden()
             ])
         ];
     }

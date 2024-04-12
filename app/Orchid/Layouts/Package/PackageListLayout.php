@@ -43,63 +43,63 @@ class PackageListLayout extends Table
     {
         return [
             TD::make('id', 'id')
-                ->sort()
-                ->filter(Input::make())
-                ->render(function (Package $package) {
-                    return Link::make((string)$package->id)
-                        ->route('platform.packages.edit', $package);
-                }),
+              ->sort()
+              ->filter(Input::make())
+              ->render(function (Package $package) {
+                  return Link::make((string)$package->id)
+                             ->route('platform.packages.edit', $package);
+              }),
             TD::make('name', 'Название')
-                ->sort()
-                ->filter(Input::make())
-                ->render(function (Package $package) {
-                    return Link::make($package->name)
-                        ->route('platform.packages.edit', $package);
-                }),
+              ->sort()
+              ->filter(Input::make())
+              ->render(function (Package $package) {
+                  return Link::make($package->name)
+                             ->route('platform.packages.edit', $package);
+              }),
             TD::make('nights', 'Ночей')->sort()
-                ->filter(Input::make()
-                    ->type('number')
-                    ->min(1)
-                    ->max(366)
-                    ->title('Ночей')
-                    ->placeholder('Y'))
-                ->render(fn (Package $package) => $package->nights),
+              ->filter(Input::make()
+                            ->type('number')
+                            ->min(1)
+                            ->max(366)
+                            ->title('Ночей')
+                            ->placeholder('Y'))
+              ->render(fn(Package $package) => $package->nights),
             TD::make('days_start', 'Начало')
-                ->sort()
-                ->filter(Select::make()
-                    ->empty('Все')
-                    ->options($this->days)
-                    ->title('День недели')
-                )
-                ->render(function (Package $package) {
-                    return $this->days[$package->days_start];
-                }),
+              ->sort()
+              ->filter(Select::make()
+                             ->empty('Все')
+                             ->options($this->days)
+                             ->title('День недели')
+              )
+              ->render(function (Package $package) {
+                  return $this->days[$package->days_start];
+              }),
             TD::make('days_end', 'Конец')
-                ->sort()
-                ->filter(Select::make()
-                    ->empty('Все')
-                    ->options($this->days)
-                    ->title('День недели')
-                )
-                ->render(function (Package $package) {
-                    return $this->days[$package->days_end];
-                }),
+              ->sort()
+              ->filter(Select::make()
+                             ->empty('Все')
+                             ->options($this->days)
+                             ->title('День недели')
+              )
+              ->render(function (Package $package) {
+                  return $this->days[$package->days_end];
+              }),
             TD::make('created_at', 'Дата создания')
-                ->sort()
-                ->filter(DateRange::make())
-                ->render(function (Package $package){
-                    return CarbonImmutable::make($package->created_at)
-                        ->format('d.m.Y H:i:s');
-                })
-                ->defaultHidden(),
+              ->sort()
+              ->filter(DateRange::make())
+              ->render(function (Package $package) {
+                  return CarbonImmutable::make($package->created_at)
+                                        ->format('d.m.Y H:i:s');
+              })
+              ->defaultHidden(),
             TD::make('updated_at', 'Дата изменения')
-                ->sort()
-                ->filter(DateRange::make())
-                ->render(function (Package $package){
-                    return CarbonImmutable::make($package->updated_at)
-                        ->format('d.m.Y H:i:s');
-                })
-                ->defaultHidden()
+              ->sort()
+              ->filter(DateRange::make())
+              ->render(function (Package $package) {
+                  return CarbonImmutable::make($package->updated_at)
+                                        ->format('d.m.Y H:i:s');
+              })
+              ->defaultHidden()
         ];
     }
 }

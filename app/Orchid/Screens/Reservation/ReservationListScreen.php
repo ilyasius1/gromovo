@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Reservation;
 
 use App\Orchid\Layouts\Reservation\ReservationListLayout;
@@ -26,7 +28,7 @@ class ReservationListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'reservations' => $this->queryBuilder->paginateWithRelations( true,  'id',  20),
+            'reservations' => $this->queryBuilder->paginateWithRelations(true, 'id', 20),
         ];
     }
 

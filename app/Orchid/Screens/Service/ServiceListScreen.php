@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Service;
 
 use App\Models\Service;
@@ -20,9 +22,9 @@ class ServiceListScreen extends Screen
     {
         return [
             'services' => Service::with('serviceCategory')
-                ->filters()
-                ->defaultSort('id')
-                ->paginate(20)
+                                 ->filters()
+                                 ->defaultSort('id')
+                                 ->paginate(20)
         ];
     }
 

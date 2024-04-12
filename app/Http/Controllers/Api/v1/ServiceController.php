@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1;
 
@@ -25,7 +25,7 @@ class ServiceController extends Controller
      */
     public function index(): ResourceCollection
     {
-        $services = Cache::remember('services', 60*60*24*7, function () {
+        $services = Cache::remember('services', 60 * 60 * 24 * 7, function () {
             return $this->servicesQueryBuilder->getAllWithCategories();
         });
         return ServiceCollection::make($services);

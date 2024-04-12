@@ -29,11 +29,11 @@ class PriceCollection extends ResourceCollection
                 $cottage = [
                     'cottageType' => $price->cottageTypeName,
                 ];
-                $cottagesByType = $cottagesCollection->filter(fn($item)=>$item->cottageTypeId === $price['cottageTypeId']);
+                $cottagesByType = $cottagesCollection->filter(fn($item) => $item->cottageTypeId === $price['cottageTypeId']);
                 foreach ($cottagesByType as $item) {
-                    $cottage ['packages']= new PriceItemResource($item);
+                    $cottage ['packages'] = new PriceItemResource($item);
                 }
-                $cottages[] =$cottage;
+                $cottages[] = $cottage;
             }
             $array [] = [
                 'periodName' => $period['periodName'],

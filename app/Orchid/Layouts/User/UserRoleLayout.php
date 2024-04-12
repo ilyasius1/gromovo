@@ -20,10 +20,10 @@ class UserRoleLayout extends Rows
     {
         return [
             Select::make('user.roles.')
-                ->fromModel(Role::class, 'name')
-                ->multiple()
-                ->title(__('Name role'))
-                ->help('Specify which groups this account should belong to'),
+                  ->fromModel(Role::class, 'name')
+                  ->multiple()
+                  ->title(__('Name role'))
+                  ->help('Specify which groups this account should belong to'),
         ];
     }
 }
