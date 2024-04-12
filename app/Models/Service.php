@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -23,7 +23,7 @@ use Orchid\Screen\AsSource;
  * @property int price_per_day
  *
  * @method static Builder|Service query()
- * @method static Service create()
+ * @method static Service create(array $fields)
  * @method Builder|Service active()
  */
 class Service extends Model

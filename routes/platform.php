@@ -6,6 +6,8 @@ use App\Orchid\Screens\Cottage\CottageEditScreen;
 use App\Orchid\Screens\Cottage\CottageListScreen;
 use App\Orchid\Screens\CottageType\CottageTypeEditScreen;
 use App\Orchid\Screens\CottageType\CottageTypeListScreen;
+use App\Orchid\Screens\CustomerProfile\CustomerProfileEditScreen;
+use App\Orchid\Screens\CustomerProfile\CustomerProfileListScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -24,6 +26,8 @@ use App\Orchid\Screens\Period\PeriodListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Price\PriceEditScreen;
 use App\Orchid\Screens\Price\PriceListScreen;
+use App\Orchid\Screens\Reservation\ReservationEditScreen;
+use App\Orchid\Screens\Reservation\ReservationListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Service\ServiceEditScreen;
@@ -107,7 +111,7 @@ Route::screen('prices', PriceListScreen::class)
 Route::screen('prices/create', PriceEditScreen::class)
     ->name('platform.prices.create');
 
-// Prices > Cottage
+// Prices > Price
 Route::screen('prices/{price}/edit', PriceEditScreen::class)
     ->name('platform.prices.edit');
 
@@ -119,7 +123,7 @@ Route::screen('service-categories', ServiceCategoryListScreen::class)
 Route::screen('service-categories/create', ServiceCategoryEditScreen::class)
     ->name('platform.serviceCategories.create');
 
-// ServiceCategories > Cottage
+// ServiceCategories > ServiceCategory
 Route::screen('service-categories/{serviceCategory}/edit', ServiceCategoryEditScreen::class)
     ->name('platform.serviceCategories.edit');
 
@@ -143,9 +147,34 @@ Route::screen('galleries', GalleryListScreen::class)
 Route::screen('galleries/create', GalleryEditScreen::class)
     ->name('platform.galleries.create');
 
-// Galleries > Service
+// Galleries > Gallery
 Route::screen('galleries/{gallery}/edit', GalleryEditScreen::class)
     ->name('platform.galleries.edit');
+
+// CustomerProfiles
+Route::screen('customer-profiles', CustomerProfileListScreen::class)
+     ->name('platform.customerProfiles');
+
+// CustomerProfiles > Create
+Route::screen('customer-profiles/create', CustomerProfileEditScreen::class)
+     ->name('platform.customerProfiles.create');
+
+// CustomerProfiles > CustomerProfile
+Route::screen('customer-profiles/{customerProfile}/edit', CustomerProfileEditScreen::class)
+     ->name('platform.customerProfiles.edit');
+
+// Reservations
+Route::screen('reservations', ReservationListScreen::class)
+     ->name('platform.reservations');
+
+// Reservations > Create
+Route::screen('reservations/create', ReservationEditScreen::class)
+     ->name('platform.reservations.create');
+
+// Reservations > Reservation
+Route::screen('reservations/{reservation}/edit', ReservationEditScreen::class)
+     ->name('platform.reservations.edit');
+
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

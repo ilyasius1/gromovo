@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Screens\ServiceCategory;
 
-use App\Http\Requests\StoreServiceCategoryRequest;
-use App\Http\Requests\UpdateServiceCategoryRequest;
+use App\Http\Requests\ServiceCategory\StoreServiceCategoryRequest;
+use App\Http\Requests\ServiceCategory\UpdateServiceCategoryRequest;
 use App\Models\ServiceCategory;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Actions\Button;
@@ -121,7 +121,7 @@ class ServiceCategoryEditScreen extends Screen
 
     public function update(ServiceCategory $serviceCategory, UpdateServiceCategoryRequest $request): RedirectResponse
     {
-        $serviceCategory->fill($request->validated('serviceCategory'))->save();
+        $serviceCategory->update($request->validated('serviceCategory'));
         Alert::info('You have successfully updated a price.');
         return redirect()->route('platform.serviceCategories');
     }

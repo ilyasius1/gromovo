@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Screens\Service;
 
-use App\Http\Requests\StoreServiceRequest;
-use App\Http\Requests\UpdateServiceRequest;
+use App\Http\Requests\Service\StoreServiceRequest;
+use App\Http\Requests\Service\UpdateServiceRequest;
 use App\Models\Service;
 use App\Orchid\Layouts\Service\ServiceEditLayout;
 use Illuminate\Http\RedirectResponse;
@@ -105,7 +105,7 @@ class ServiceEditScreen extends Screen
 
     public function update(Service $service, UpdateServiceRequest $request): RedirectResponse
     {
-        $service->fill($request->validated('service'))->save();
+        $service->update($request->validated('service'));
         Alert::info('You have successfully updated a service.');
         return redirect()->route('platform.services');
     }

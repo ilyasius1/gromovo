@@ -6,8 +6,8 @@ use App\Http\Controllers\Api\v1\CottageController;
 use App\Http\Controllers\Api\v1\CottageTypeController;
 use App\Http\Controllers\Api\v1\GalleryController;
 use App\Http\Controllers\Api\v1\ImageController;
-use App\Http\Controllers\Api\v1\PeriodController;
 use App\Http\Controllers\Api\v1\PriceController;
+use App\Http\Controllers\Api\v1\ReservationController;
 use App\Http\Controllers\Api\v1\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -50,5 +50,10 @@ Route::prefix('v1')->group(function () {
     Route::controller(PriceController::class)->group(function () {
         Route::get('/prices','index');
         Route::get('/prices/{price}','show');
+    });
+    Route::controller(ReservationController::class)->group(function () {
+        Route::get('/reservations','index');
+        Route::get('/reservations/{reservation}','show');
+        Route::post('/reservations','store');
     });
 });

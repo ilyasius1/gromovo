@@ -2,19 +2,16 @@
 
 namespace App\Orchid\Screens\Price;
 
-use App\Http\Requests\StorePriceRequest;
-use App\Http\Requests\UpdatePriceRequest;
+use App\Http\Requests\Price\StorePriceRequest;
+use App\Http\Requests\Price\UpdatePriceRequest;
 use App\Models\Price;
 use App\Orchid\Layouts\Price\PriceEditLayout;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
-use Orchid\Support\Facades\Layout;
 
 class PriceEditScreen extends Screen
 {
@@ -108,7 +105,7 @@ class PriceEditScreen extends Screen
 
     public function update(Price $price, UpdatePriceRequest $request): RedirectResponse
     {
-        $price->fill($request->validated('price'))->save();
+        $price->update($request->validated('price'));
         Alert::info('You have successfully updated a price.');
         return redirect()->route('platform.prices');
     }

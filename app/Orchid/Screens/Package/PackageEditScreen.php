@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Screens\Package;
 
-use App\Http\Requests\StorePackageRequest;
-use App\Http\Requests\UpdatePackageRequest;
+use App\Http\Requests\Package\StorePackageRequest;
+use App\Http\Requests\Package\UpdatePackageRequest;
 use App\Models\Package;
 use App\Orchid\Layouts\Package\PackageEditLayout;
 use Illuminate\Http\RedirectResponse;
@@ -119,7 +119,7 @@ class PackageEditScreen extends Screen
      */
     public function update(Package $package, UpdatePackageRequest $request): RedirectResponse
     {
-        $package->fill($request->validated('package'))->save();
+        $package->update($request->validated('package'));
         Alert::info('You have successfully updated a package.');
         return redirect()->route('platform.packages');
     }
