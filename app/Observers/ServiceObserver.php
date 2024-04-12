@@ -11,7 +11,7 @@ class ServiceObserver
         Cache::forget('services');
     }
 
-    public function updated():void
+    public function updated(): void
     {
         Cache::forget('services');
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -24,7 +26,7 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (WrongReservationAmountException $e) {
-            if(request()->is('admin/*')) {
+            if (request()->is('admin/*')) {
                 return response($e->getMessage(), 409);//->withErrors($e->getMessage());
             }
         });

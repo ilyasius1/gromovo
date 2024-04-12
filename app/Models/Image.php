@@ -37,6 +37,7 @@ class Image extends Model
     ];
 
     //Relations
+
     /**
      * @return BelongsTo
      */

@@ -13,7 +13,6 @@ use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
-use Orchid\Filters\Types\WhereIn;
 use Orchid\Screen\AsSource;
 
 /**

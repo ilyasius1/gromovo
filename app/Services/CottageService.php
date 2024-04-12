@@ -52,7 +52,7 @@ class CottageService
         $cottage->summerGallery()->associate($summerGallery);
         $cottage->winterGallery()->associate($winterGallery);
         $cottage->save();
-        if(!empty($fields['images'])){
+        if (!empty($fields['images'])) {
             $this->fillGalleries($cottage, $fields['images']);
         }
         return $cottage;
@@ -68,7 +68,7 @@ class CottageService
     public function update(Cottage $cottage, array $fields): void
     {
         $cottage->fill($fields['cottage'])->save();
-        if(!empty($fields['images'])){
+        if (!empty($fields['images'])) {
             $this->fillGalleries($cottage, $fields['images']);
         }
     }
@@ -87,7 +87,7 @@ class CottageService
             'summerGallery' => $cottage->summerGallery,
             'winterGallery' => $cottage->winterGallery
         ];
-        foreach ($galleries as  $gallery) {
+        foreach ($galleries as $gallery) {
             $this->galleryService->deleteGallery($gallery);
         }
         $cottage->delete();

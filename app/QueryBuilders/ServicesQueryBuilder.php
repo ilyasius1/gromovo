@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\QueryBuilders;
 
@@ -22,7 +22,7 @@ class ServicesQueryBuilder extends QueryBuilder
                         'services.*',
                         'service_categories.name as categoryName',
                     )
-                    ->join('service_categories', 'services.service_category_id', '=','service_categories.id')
+                    ->join('service_categories', 'services.service_category_id', '=', 'service_categories.id')
                     ->get();
     }
 }

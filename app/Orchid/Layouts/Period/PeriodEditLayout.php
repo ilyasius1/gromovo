@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Period;
 
 use Orchid\Screen\Actions\Button;
@@ -29,31 +31,31 @@ class PeriodEditLayout extends Rows
     {
         return [
             Input::make('period.name')
-                ->required()
-                ->title('Название периода')
-                ->placeholder('Название периода')
-                ->help(''),
+                 ->required()
+                 ->title('Название периода')
+                 ->placeholder('Название периода')
+                 ->help(''),
             DateRange::make('period')
-                ->required()
-                ->title('Даты'),
+                     ->required()
+                     ->title('Даты'),
             Switcher::make('period.is_holiday')
-                ->sendTrueOrFalse()
-                ->placeholder('Праздничный'),
+                    ->sendTrueOrFalse()
+                    ->placeholder('Праздничный'),
             CheckBox::make('period.is_active')
-                ->placeholder('Активен?')
-                ->help(''),
+                    ->placeholder('Активен?')
+                    ->help(''),
 
             Button::make('Создать период')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->query['periodExists']),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->query['periodExists']),
 
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee($this->query['periodExists'])
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee($this->query['periodExists'])
         ];
     }
 }

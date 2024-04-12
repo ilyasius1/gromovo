@@ -10,7 +10,6 @@ use App\Http\Requests\Reservation\StoreReservationRequest;
 use App\Http\Requests\Reservation\UpdateReservationRequest;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
-use App\QueryBuilders\QueryBuilder;
 use App\QueryBuilders\ReservationsQueryBuilder;
 use App\Services\ReservationService;
 use Illuminate\Http\JsonResponse;

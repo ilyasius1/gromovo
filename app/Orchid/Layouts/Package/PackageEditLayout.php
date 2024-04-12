@@ -6,11 +6,8 @@ namespace App\Orchid\Layouts\Package;
 
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Support\Color;
 
@@ -35,36 +32,36 @@ class PackageEditLayout extends Rows
     {
         return [
             Input::make('package.name')
-                ->required()
-                ->title('Название пакета')
-                ->placeholder('Название пакета'),
+                 ->required()
+                 ->title('Название пакета')
+                 ->placeholder('Название пакета'),
             Input::make('package.nights')
-                ->type('number')
-                ->min(1)
-                ->max(366)
-                ->required()
-                ->title('Ночей'),
+                 ->type('number')
+                 ->min(1)
+                 ->max(366)
+                 ->required()
+                 ->title('Ночей'),
             Select::make('package.days_start')
-                ->required()
-                ->title('Начало')
-                ->options($this->days)
-                ->empty('Не выбрано'),
+                  ->required()
+                  ->title('Начало')
+                  ->options($this->days)
+                  ->empty('Не выбрано'),
             Select::make('package.days_end')
-                ->required()
-                ->title('Конец')
-                ->options($this->days)
-                ->empty('Не выбрано'),
+                  ->required()
+                  ->title('Конец')
+                  ->options($this->days)
+                  ->empty('Не выбрано'),
 
             Button::make('Создать пакет')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->query['packageExists']),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->query['packageExists']),
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee($this->query['packageExists'])
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee($this->query['packageExists'])
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Price;
 
 use App\Http\Requests\Price\StorePriceRequest;
@@ -60,22 +62,22 @@ class PriceEditScreen extends Screen
     {
         return [
             Button::make('Создать цену')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('store')
-                ->canSee(!$this->priceExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('store')
+                  ->canSee(!$this->priceExists()),
 
             Button::make('Сохранить')
-                ->type(Color::SUCCESS)
-                ->icon('save')
-                ->method('update')
-                ->canSee((bool)$this->priceExists()),
+                  ->type(Color::SUCCESS)
+                  ->icon('save')
+                  ->method('update')
+                  ->canSee((bool)$this->priceExists()),
 
             Button::make('Remove')
-                ->type(Color::DANGER)
-                ->icon('trash')
-                ->method('remove')
-                ->canSee((bool)$this->priceExists()),
+                  ->type(Color::DANGER)
+                  ->icon('trash')
+                  ->method('remove')
+                  ->canSee((bool)$this->priceExists()),
 
             Link::make('Вернуться к списку')
                 ->type(Color::BASIC)

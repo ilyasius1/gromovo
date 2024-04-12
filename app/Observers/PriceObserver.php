@@ -16,7 +16,7 @@ class PriceObserver
         Cache::forget('prices');
     }
 
-    public function updated():void
+    public function updated(): void
     {
         Cache::forget('prices');
     }

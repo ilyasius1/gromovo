@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\QueryBuilders;
 
 use App\Models\Cottage;
@@ -26,14 +28,14 @@ class CottagesQueryBuilder extends QueryBuilder
                         'cottages.*',
                         'cottage_types.name as cottage_type',
                     )
-                    ->join('cottage_types', 'cottages.cottage_type_id', '=','cottage_types.id')
+                    ->join('cottage_types', 'cottages.cottage_type_id', '=', 'cottage_types.id')
                     ->get();
     }
 
     public function paginateWithTypes($perPage = 10): LengthAwarePaginator
     {
         return $this->getModel()
-            ->join('cottage_types', 'cottages.cottage_type_id', '=','cottage_types.id')
-            ->paginate($perPage);
+                    ->join('cottage_types', 'cottages.cottage_type_id', '=', 'cottage_types.id')
+                    ->paginate($perPage);
     }
 }
