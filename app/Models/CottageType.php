@@ -16,9 +16,6 @@ use Orchid\Screen\AsSource;
 /**
  * @property int id
  * @property string name
- * @property int main_places
- * @property int additional_places
- * @property int children_places
  * @property string created_at
  * @property string updated_at
  *
@@ -32,12 +29,7 @@ class CottageType extends Model
     use Filterable;
 
 
-    protected $fillable = [
-        'name',
-        'main_places',
-        'additional_places',
-        'children_places'
-    ];
+    protected $fillable = ['name'];
 
 
     //Orchid filters and sorts

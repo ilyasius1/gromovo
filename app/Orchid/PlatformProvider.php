@@ -76,7 +76,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Брони')
                 ->icon('bs.house')
-                ->route('platform.bookings'),
+                ->route('platform.reservations'),
 
 //            Menu::make('Get Started')
 //                ->icon('bs.book')

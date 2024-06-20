@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum BookingStatus: int
+enum ReservationStatus: int
 {
     case DRAFT = 1001;
     case CONFIRMED = 1002;
@@ -13,9 +13,9 @@ enum BookingStatus: int
     public function status(): string
     {
         return match ($this) {
-            BookingStatus::DRAFT => 'Черновик',
-            BookingStatus::CONFIRMED => 'Подтверждён',
-            BookingStatus::CANCELLED => 'Отменён'
+            ReservationStatus::DRAFT => 'Черновик',
+            ReservationStatus::CONFIRMED => 'Подтверждён',
+            ReservationStatus::CANCELLED => 'Отменён'
         };
     }
 }

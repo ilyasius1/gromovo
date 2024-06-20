@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\v1\CottageTypeController;
 use App\Http\Controllers\Api\v1\GalleryController;
 use App\Http\Controllers\Api\v1\ImageController;
 use App\Http\Controllers\Api\v1\PriceController;
-use App\Http\Controllers\Api\v1\BookingController;
+use App\Http\Controllers\Api\v1\ReservationController;
 use App\Http\Controllers\Api\v1\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +41,6 @@ Route::prefix('v1')->group(function () {
     });
     Route::controller(CottageController::class)->group(function () {
         Route::get('/cottages','index');
-        Route::get('/cottages/free','getFree');
         Route::get('/cottages/{cottage}','show');
     });
     Route::controller(ServiceController::class)->group(function () {
@@ -52,14 +51,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/prices','index');
         Route::get('/prices/{price}','show');
     });
-    Route::controller(BookingController::class)->group(function () {
-        Route::get('/bookings','index');
-        Route::get('/bookings/contract','getContract');
-        Route::get('/bookings/{contractNumber}','getByContractNumber')
-             ->where('contract','[0-9]{8}-[0-9]{4}');
-        Route::post('/bookings','store');
-        Route::match(['get','post'],'/price', 'getPrice');
-        Route::match(['get','post'],'/booked-dates', 'getBookedDates');
-        Route::match(['get','post'],'/is-booked', 'isCottageBooked');
+    Route::controller(ReservationController::class)->group(function () {
+        Route::get('/reservations','index');
+        Route::get('/reservations/{reservation}','show');
+        Route::post('/reservations','store');
     });
 });

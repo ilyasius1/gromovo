@@ -14,7 +14,7 @@ class UpdatePeriodRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()?->inRole('admin');
+        return true;
     }
 
     /**

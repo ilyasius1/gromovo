@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\Price;
 
 use App\Models\CottageType;
-use App\Models\Package;
 use App\Models\Period;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,7 +17,7 @@ class UpdatePriceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()?->inRole('admin');
+        return true;
     }
 
     /**
@@ -29,11 +28,9 @@ class UpdatePriceRequest extends FormRequest
     {
         $cottageType = CottageType::findOrFail($this->price['cottage_type_id']);
         $period = Period::findOrFail($this->price['period_id']);
-        $package = Package::findOrFail($this->price['package_id']);
         $start = CarbonImmutable::make($period->start)->format('d.m.Y');
         $end = CarbonImmutable::make($period->end)->format('d.m.Y');
-        $name = "$cottageType->name цена за $package->name с $start по $end";
-
+        $name = "$cottageType->name цена с $start по $end";
         $this->merge([
             'price' => array_merge($this->price, [
                 'name' => $name,
@@ -60,7 +57,6 @@ class UpdatePriceRequest extends FormRequest
             'price.period_id' => 'required|exists:App\Models\Period,id',
             'price.package_id' => 'required|exists:App\Models\Package,id',
             'price.rate' => 'numeric|min:0',
-            'price.is_active' => 'boolean',
         ];
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\BookingStatus;
+use App\Enums\ReservationStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,17 +23,17 @@ use Orchid\Screen\AsSource;
  * @property string end
  * @property int amount
  * @property string pay_before
- * @property BookingStatus status
+ * @property ReservationStatus status
  * @property string created_at
  * @property string updated_at
  *
- * @method static Builder|Booking query()
- * @method static Booking create(array $fields)
- * @method Builder|Booking active()
- * @method static Builder|Booking filters()
- * @method static Builder|Booking defaultSort(string $column, string $direction = 'asc')
+ * @method static Builder|Reservation query()
+ * @method static Reservation create(array $fields)
+ * @method Builder|Reservation active()
+ * @method static Builder|Reservation filters()
+ * @method static Builder|Reservation defaultSort(string $column, string $direction = 'asc')
  */
-class Booking extends Model
+class Reservation extends Model
 {
     use HasFactory;
     use AsSource;
@@ -44,9 +44,6 @@ class Booking extends Model
         'customer_profile_id',
         'start',
         'end',
-        'main_places',
-        'additional_places',
-        'children_places',
         'amount',
         'contract_number',
         'pay_before',
@@ -55,7 +52,7 @@ class Booking extends Model
 
     //Casts and mutators
     protected $casts = [
-        'status' => BookingStatus::class,
+        'status' => ReservationStatus::class,
     ];
 
     //Orchid filters and sorts

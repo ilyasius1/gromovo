@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -47,7 +46,6 @@ use Orchid\Screen\AsSource;
  * @method static Builder|Cottage query()
  * @method static Cottage create()
  * @method Builder|Cottage active()
- * @method static Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|Cottage findOrFail($id, $columns = ['*'])
  * @method static Builder|Cottage filters()
  * @method static Builder|Cottage defaultSort(string $column, string $direction = 'asc')
  */
@@ -161,8 +159,8 @@ class Cottage extends Model
         return $this->BelongsTo(Gallery::class, 'winter_gallery_id');
     }
 
-    public function bookings(): HasMany
+    public function reservations(): HasMany
     {
-        return $this->hasMany(Booking::class, 'cottage_id');
+        return $this->hasMany(Reservation::class, 'cottage_id');
     }
 }

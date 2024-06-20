@@ -18,10 +18,7 @@ class CottageTypeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'main_places' => $this->main_places,
-            'additional_places' => $this->additional_places,
-            'children_places' => $this->children_places,
+            'name' => $this->name
         ];
     }
 }

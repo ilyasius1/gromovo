@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
-use Orchid\Filters\Types\WhereIn;
 use Orchid\Screen\AsSource;
 
 /**
@@ -27,8 +26,6 @@ use Orchid\Screen\AsSource;
  * @method static Builder|Price query()
  * @method static Price create()
  * @method Builder|Price active()
- * @method static Builder|Price filters()
- * @method static Builder|Price defaultSort(string $column, string $direction = 'asc')
  */
 class Price extends Model
 {
@@ -50,10 +47,6 @@ class Price extends Model
     protected array $allowedFilters = [
         'id' => Where::class,
         'name' => Where::class,
-        'cottage_type_id' => WhereIn::class,
-        'period_id' => WhereIn::class,
-        'package_id' => WhereIn::class,
-        'is_active' => WhereIn::class,
         'created_at' => WhereDateStartEnd::class,
         'updated_at' => WhereDateStartEnd::class
     ];
@@ -61,9 +54,6 @@ class Price extends Model
     protected array $allowedSorts = [
         'id',
         'name',
-        'cottage_type_id',
-        'period_id',
-        'package_id',
         'created_at',
         'updated_at'
     ];

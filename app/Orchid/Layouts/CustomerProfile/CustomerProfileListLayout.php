@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\CustomerProfile;
 
+use App\Models\Cottage;
 use App\Models\CustomerProfile;
 use Carbon\CarbonImmutable;
 use Orchid\Screen\Actions\Link;
