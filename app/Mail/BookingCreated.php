@@ -21,7 +21,8 @@ class BookingCreated extends Mailable
     public function __construct(
         protected Booking $booking
     )
-    {}
+    {
+    }
 
     /**
      * Get the message envelope.

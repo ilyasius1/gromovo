@@ -98,15 +98,15 @@ class BookingsQueryBuilder extends QueryBuilder
                 })
                       ->orWhere(function (Builder $query) use ($start, $end) {
                           $query->where('end', '>', $start);
-                                if (isset($end)) {
-                                    $query->where('end', '<=', $end);
-                                }
+                          if (isset($end)) {
+                              $query->where('end', '<=', $end);
+                          }
                       })
                       ->orWhere(function (Builder $query) use ($start, $end) {
                           $query->where('start', '<=', $start);
-                              if (isset($end)) {
-                                  $query->where('end', '>=', $end);
-                              }
+                          if (isset($end)) {
+                              $query->where('end', '>=', $end);
+                          }
                       });
             });
         }

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Enums\DayOfWeek;
 use App\Enums\BookingStatus;
 use App\Exceptions\CottageIsBookedException;
 use App\Exceptions\NoPricesException;
 use App\Exceptions\WrongBookingPriceException;
 use App\Jobs\SendBookingConfirmation;
-use App\Mail\BookingCreated;
 use App\Models\CustomerProfile;
 use App\Models\Price;
 use App\Models\Booking;
@@ -21,7 +19,6 @@ use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\Mail;
 
 /**
  *

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\QueryBuilders;
 
 use App\Models\Cottage;
-use App\Models\CottageType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;

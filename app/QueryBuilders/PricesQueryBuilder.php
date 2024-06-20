@@ -20,6 +20,10 @@ class PricesQueryBuilder extends QueryBuilder
         return Price::query();
     }
 
+    /**
+     * @param int|string $cottageId
+     * @return Builder
+     */
     public function byCottage(int|string $cottageId): Builder
     {
         return $this->getModel()
@@ -40,11 +44,20 @@ class PricesQueryBuilder extends QueryBuilder
                     ->get();
     }
 
+    /**
+     * @param int|string $cottageId
+     * @param CarbonImmutable $start
+     * @param CarbonImmutable $end
+     * @param $isFullMonth
+     * @param $orderBy
+     * @param $orderDirection
+     * @return Collection
+     */
     public function getByCottageAndDates(int|string $cottageId, CarbonImmutable $start, CarbonImmutable $end, $isFullMonth = false, $orderBy = 'packages.nights', $orderDirection = 'desc'): Collection
     {
         $bookingNights = $end->diffInDays($start);
         return Price::with([
-            'cottageType',// => ['cottages'],
+            'cottageType',
             'package',
             'period'
         ])
@@ -56,17 +69,9 @@ class PricesQueryBuilder extends QueryBuilder
                         'prices.id',
                         'prices.rate',
                         'prices.name',
-//                        'periods.start',
-//                        'periods.end',
                         'prices.cottage_type_id',
                         'prices.period_id',
-                        'prices.package_id',
-//                        'cottage_types.id',
-//                        'cottage_types.name',
-//                        'cottage_types.children_places',
-//                        'packages.*',
-//                        'periods.*',
-
+                        'prices.package_id'
             )
                     ->where('prices.is_active', '=', true)
                     ->where('cottages.id', '=', $cottageId)
@@ -79,12 +84,6 @@ class PricesQueryBuilder extends QueryBuilder
                     }
                     )
                     ->where(function (Builder $query) use ($start, $end) {
-//                        return $query->whereBetween('periods.start', [$start, $end])
-//                                     ->orWhereBetween('periods.end', [$start, $end])
-//                                     ->orWhere(function (Builder $query) use ($start, $end) {
-//                                         return $query->where('periods.start', '<=', $start)
-//                                                      ->where('periods.end', '>=', $end);
-//                                     });
                         return $query->where(function (Builder $query) use ($start, $end) {
                             return $query->where('periods.start', '>', $start)
                                          ->where('periods.start', '<=', $end);

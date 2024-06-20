@@ -25,7 +25,7 @@ use Nette\Schema\ValidationException;
 class BookingController extends Controller
 {
     public function __construct(
-        protected BookingService      $bookingService,
+        protected BookingService       $bookingService,
         protected BookingsQueryBuilder $bookingsQueryBuilder
     )
     {
@@ -121,7 +121,6 @@ class BookingController extends Controller
     public function getByContractNumber(string $contractNumber): BookingResource
     {
         $booking = $this->bookingsQueryBuilder->getByContractNumber($contractNumber);
-//        dd($booking->status->status());
         return new BookingResource($booking);
     }
 

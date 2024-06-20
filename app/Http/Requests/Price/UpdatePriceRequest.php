@@ -33,7 +33,6 @@ class UpdatePriceRequest extends FormRequest
         $start = CarbonImmutable::make($period->start)->format('d.m.Y');
         $end = CarbonImmutable::make($period->end)->format('d.m.Y');
         $name = "$cottageType->name цена за $package->name с $start по $end";
-
         $this->merge([
             'price' => array_merge($this->price, [
                 'name' => $name,

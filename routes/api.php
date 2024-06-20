@@ -28,38 +28,38 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::prefix('v1')->group(function () {
     Route::controller(ImageController::class)->group(function () {
-        Route::get('/images','index');
-        Route::get('/images/{image}','show');
+        Route::get('/images', 'index');
+        Route::get('/images/{image}', 'show');
     });
     Route::controller(GalleryController::class)->group(function () {
-        Route::get('/galleries','index');
-        Route::get('/galleries/{gallery}','show');
+        Route::get('/galleries', 'index');
+        Route::get('/galleries/{gallery}', 'show');
     });
     Route::controller(CottageTypeController::class)->group(function () {
-        Route::get('/cottage-types','index');
-        Route::get('/cottage-types/{cottage-type}','show');
+        Route::get('/cottage-types', 'index');
+        Route::get('/cottage-types/{cottage-type}', 'show');
     });
     Route::controller(CottageController::class)->group(function () {
-        Route::get('/cottages','index');
-        Route::get('/cottages/free','getFree');
-        Route::get('/cottages/{cottage}','show');
+        Route::get('/cottages', 'index');
+        Route::get('/cottages/free', 'getFree');
+        Route::get('/cottages/{cottage}', 'show');
     });
     Route::controller(ServiceController::class)->group(function () {
-        Route::get('/services','index');
-        Route::get('/services/{service}','show');
+        Route::get('/services', 'index');
+        Route::get('/services/{service}', 'show');
     });
     Route::controller(PriceController::class)->group(function () {
-        Route::get('/prices','index');
-        Route::get('/prices/{price}','show');
+        Route::get('/prices', 'index');
+        Route::get('/prices/{price}', 'show');
     });
     Route::controller(BookingController::class)->group(function () {
-        Route::get('/bookings','index');
-        Route::get('/bookings/contract','getContract');
-        Route::get('/bookings/{contractNumber}','getByContractNumber')
-             ->where('contract','[0-9]{8}-[0-9]{4}');
-        Route::post('/bookings','store');
-        Route::match(['get','post'],'/price', 'getPrice');
-        Route::match(['get','post'],'/booked-dates', 'getBookedDates');
-        Route::match(['get','post'],'/is-booked', 'isCottageBooked');
+        Route::get('/bookings', 'index');
+        Route::get('/bookings/contract', 'getContract');
+        Route::get('/bookings/{contractNumber}', 'getByContractNumber')
+             ->where('contract', '[0-9]{8}-[0-9]{4}');
+        Route::post('/bookings', 'store');
+        Route::match(['get', 'post'], '/price', 'getPrice');
+        Route::match(['get', 'post'], '/booked-dates', 'getBookedDates');
+        Route::match(['get', 'post'], '/is-booked', 'isCottageBooked');
     });
 });

@@ -17,8 +17,6 @@ class CottageGalleryEditLayout extends Rows
      */
     protected $title;
 
-//    protected ?string $galleryName = 'gallery';
-
     public function __construct(
         private readonly string $galleryName = 'main'
     )
