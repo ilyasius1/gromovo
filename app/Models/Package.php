@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\DayOfWeek;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,8 +20,8 @@ use Orchid\Screen\AsSource;
  * @property int id
  * @property string name
  * @property int nights
- * @property string days_start
- * @property string days_end
+ * @property DayOfWeek days_start
+ * @property DayOfWeek days_end
  * @property string created_at
  * @property string updated_at
  *
@@ -40,6 +42,22 @@ class Package extends Model
         'days_start',
         'days_end',
     ];
+
+    //Casts and mutators
+    protected $casts = [
+        'days_start' => DayOfWeek::class,
+        'days_end' => DayOfWeek::class,
+    ];
+
+    /**
+     * @return Attribute
+     */
+    public function isAnyDay(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => $attributes['days_start'] === $attributes['days_end']
+        );
+    }
 
     //Orchid filters and sorts
     protected array $allowedFilters = [

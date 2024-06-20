@@ -26,8 +26,8 @@ use App\Orchid\Screens\Period\PeriodListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Price\PriceEditScreen;
 use App\Orchid\Screens\Price\PriceListScreen;
-use App\Orchid\Screens\Reservation\ReservationEditScreen;
-use App\Orchid\Screens\Reservation\ReservationListScreen;
+use App\Orchid\Screens\Booking\BookingEditScreen;
+use App\Orchid\Screens\Booking\BookingListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Service\ServiceEditScreen;
@@ -163,17 +163,17 @@ Route::screen('customer-profiles/create', CustomerProfileEditScreen::class)
 Route::screen('customer-profiles/{customerProfile}/edit', CustomerProfileEditScreen::class)
      ->name('platform.customerProfiles.edit');
 
-// Reservations
-Route::screen('reservations', ReservationListScreen::class)
-     ->name('platform.reservations');
+// Bookings
+Route::screen('bookings', BookingListScreen::class)
+     ->name('platform.bookings');
 
-// Reservations > Create
-Route::screen('reservations/create', ReservationEditScreen::class)
-     ->name('platform.reservations.create');
+// Bookings > Create
+Route::screen('bookings/create', BookingEditScreen::class)
+     ->name('platform.bookings.create');
 
-// Reservations > Reservation
-Route::screen('reservations/{reservation}/edit', ReservationEditScreen::class)
-     ->name('platform.reservations.edit');
+// Bookings > Booking
+Route::screen('bookings/{booking}/edit', BookingEditScreen::class)
+     ->name('platform.bookings.edit');
 
 
 // Platform > Profile

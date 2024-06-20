@@ -40,11 +40,11 @@ class PricesQueryBuilder extends QueryBuilder
                     ->get();
     }
 
-    public function getByCottageAndDates(int|string $cottageId, CarbonImmutable $start, CarbonImmutable $end): Collection
+    public function getByCottageAndDates(int|string $cottageId, CarbonImmutable $start, CarbonImmutable $end, $isFullMonth = false, $orderBy = 'packages.nights', $orderDirection = 'desc'): Collection
     {
-        $reservationNights = $end->diffInDays($start);
+        $bookingNights = $end->diffInDays($start);
         return Price::with([
-            'cottageType' => ['cottages'],
+            'cottageType',// => ['cottages'],
             'package',
             'period'
         ])
@@ -55,20 +55,50 @@ class PricesQueryBuilder extends QueryBuilder
                     ->select(
                         'prices.id',
                         'prices.rate',
-                        'periods.start',
-                        'periods.end',
-                        'packages.nights'
-                    )
+                        'prices.name',
+//                        'periods.start',
+//                        'periods.end',
+                        'prices.cottage_type_id',
+                        'prices.period_id',
+                        'prices.package_id',
+//                        'cottage_types.id',
+//                        'cottage_types.name',
+//                        'cottage_types.children_places',
+//                        'packages.*',
+//                        'periods.*',
+
+            )
                     ->where('prices.is_active', '=', true)
-                    ->where('packages.nights', '<=', $reservationNights)
+                    ->where('cottages.id', '=', $cottageId)
+                    ->where(function (Builder $query) use ($bookingNights, $isFullMonth) {
+                        $query->where('packages.nights', '<=', $bookingNights);
+                        if ($isFullMonth) {
+                            $query->orWhere('packages.nights', '=', 30);
+                        }
+                        return $query;
+                    }
+                    )
                     ->where(function (Builder $query) use ($start, $end) {
-                        return $query->whereBetween('periods.start', [$start, $end])
-                                     ->orWhereBetween('periods.end', [$start, $end])
+//                        return $query->whereBetween('periods.start', [$start, $end])
+//                                     ->orWhereBetween('periods.end', [$start, $end])
+//                                     ->orWhere(function (Builder $query) use ($start, $end) {
+//                                         return $query->where('periods.start', '<=', $start)
+//                                                      ->where('periods.end', '>=', $end);
+//                                     });
+                        return $query->where(function (Builder $query) use ($start, $end) {
+                            return $query->where('periods.start', '>', $start)
+                                         ->where('periods.start', '<=', $end);
+                        })
+                                     ->orWhere((function (Builder $query) use ($start, $end) {
+                                         return $query->where('periods.end', '>', $start)
+                                                      ->where('periods.end', '<=', $end);
+                                     }))
                                      ->orWhere(function (Builder $query) use ($start, $end) {
                                          return $query->where('periods.start', '<=', $start)
                                                       ->where('periods.end', '>=', $end);
                                      });
                     })
+                    ->orderBy($orderBy, $orderDirection)->orderBy('periods.start')
                     ->get();
 
     }

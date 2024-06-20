@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Package;
 
+use App\Enums\DayOfWeek;
 use App\Models\Package;
 use Carbon\CarbonImmutable;
 use Orchid\Screen\Actions\Link;
@@ -24,20 +25,12 @@ class PackageListLayout extends Table
      * @var string
      */
     protected $target = 'packages';
-    protected array $days = [
-        1 => 'Понедельник',
-        2 => 'Вторник',
-        3 => 'Среда',
-        4 => 'Четверг',
-        5 => 'Пятница',
-        6 => 'Суббота',
-        7 => 'Воскресенье'
-    ];
 
     /**
      * Get the table cells to be displayed.
      *
      * @return TD[]
+     * @throws \ReflectionException
      */
     protected function columns(): iterable
     {
@@ -68,21 +61,21 @@ class PackageListLayout extends Table
               ->sort()
               ->filter(Select::make()
                              ->empty('Все')
-                             ->options($this->days)
+                             ->fromEnum(DayOfWeek::class)
                              ->title('День недели')
               )
               ->render(function (Package $package) {
-                  return $this->days[$package->days_start];
+                  return $package->days_start->dayLocaleUcFirst();
               }),
             TD::make('days_end', 'Конец')
               ->sort()
               ->filter(Select::make()
                              ->empty('Все')
-                             ->options($this->days)
+                             ->fromEnum(DayOfWeek::class)
                              ->title('День недели')
               )
               ->render(function (Package $package) {
-                  return $this->days[$package->days_end];
+                  return $package->days_end->dayLocaleUcFirst();
               }),
             TD::make('created_at', 'Дата создания')
               ->sort()
