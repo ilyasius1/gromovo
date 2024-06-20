@@ -8,11 +8,14 @@ use App\Models\Cottage;
 use App\Models\CottageType;
 use Carbon\CarbonImmutable;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use Orchid\Support\Facades\Layout;
 
 class CottageListLayout extends Table
 {

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,7 +19,7 @@ class CottageFactory extends Factory
         $floor1 = [];
         $floor2 = [];
         $floor3 = [];
-        for ($i = 0; $i < 5; $i++) {
+        for($i = 0; $i < 5; $i++) {
             $floor1[] = fake('ru_RU')->realText(100);
             $floor3[] = fake('ru_RU')->realText(100);
             $floor2[] = fake('ru_RU')->realText(100);
@@ -32,13 +30,13 @@ class CottageFactory extends Factory
             'description' => fake('ru_RU')->realText(),
             'area' => fake()->numberBetween(100, 200),
             'floors' => 2,
-            'bedrooms' => fake()->numberBetween(1, 5),
+            'bedrooms' => fake()->numberBetween(1,5),
             'single_beds' => fake()->numberBetween(0, 5),
             'double_beds' => fake()->numberBetween(0, 5),
             'additional_single_beds' => fake()->numberBetween(0, 5),
             'additional_double_beds' => fake()->numberBetween(0, 5),
-            'bathrooms' => fake()->numberBetween(0, 5),
-            'showers' => fake()->numberBetween(0, 5),
+            'bathrooms'  => fake()->numberBetween(0, 5),
+            'showers'  => fake()->numberBetween(0, 5),
             'sauna' => fake()->boolean(),
             'fireplace' => fake()->boolean(),
             'floor1_features' => $floor1,
@@ -54,7 +52,7 @@ class CottageFactory extends Factory
             $floor1 = [];
             $floor2 = [];
             $floor3 = [];
-            for ($i = 0; $i < 5; $i++) {
+            for($i = 0; $i < 5; $i++) {
                 $floor1[] = fake('ru_RU')->realText(100);
                 $floor3[] = fake('ru_RU')->realText(100);
                 $floor2[] = fake('ru_RU')->realText(100);

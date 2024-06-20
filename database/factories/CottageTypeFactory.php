@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,8 +17,7 @@ class CottageTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'CottageType' . fake()->numberBetween(1, 300),
-            'children_places' => fake()->numberBetween(1, 3)
+            'name' => 'CottageType' . fake()->numberBetween(1, 300)
         ];
     }
 }

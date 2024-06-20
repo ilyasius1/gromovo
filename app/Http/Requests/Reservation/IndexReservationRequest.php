@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Booking;
+namespace App\Http\Requests\Reservation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexBookingRequest extends FormRequest
+class IndexReservationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

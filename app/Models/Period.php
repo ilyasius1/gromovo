@@ -72,7 +72,7 @@ class Period extends Model
     /**
      * @return string
      */
-    public function getNameWithDatesAttribute(): string
+    public function getNameWithDatesAttribute()
     {
         return $this->attributes['name']
                . ' (c ' . CarbonImmutable::make($this->attributes['start'])->format('d.m.Y')

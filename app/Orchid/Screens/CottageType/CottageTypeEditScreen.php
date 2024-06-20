@@ -99,21 +99,6 @@ class CottageTypeEditScreen extends Screen
                      ->title('Название')
                      ->placeholder('Введите название')
                      ->help(''),
-                Input::make('cottageType.main_places')
-                     ->type('number')
-                     ->min(0)
-                     ->title('Количество основных мест')
-                     ->placeholder('Количество основных мест'),
-                Input::make('cottageType.additional_places')
-                     ->type('number')
-                     ->min(0)
-                     ->title('Количество дополнительных мест')
-                     ->placeholder('Количество дополнительных мест'),
-                Input::make('cottageType.children_places')
-                     ->type('number')
-                     ->min(0)
-                     ->title('Количество дополнительных места для детей от 3 до 12 лет')
-                     ->placeholder('Количество дополнительных места для детей от 3 до 12 лет'),
 
                 Button::make('Создать тип коттеджа')
                       ->type(Color::SUCCESS)
