@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens\Booking;
+namespace App\Orchid\Screens\Reservation;
 
-use App\Orchid\Layouts\Booking\BookingListLayout;
-use App\QueryBuilders\BookingsQueryBuilder;
+use App\Orchid\Layouts\Reservation\ReservationListLayout;
+use App\QueryBuilders\ReservationsQueryBuilder;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 
-class BookingListScreen extends Screen
+class ReservationListScreen extends Screen
 {
     protected string $description = 'Список броней';
-    protected BookingsQueryBuilder $queryBuilder;
+    protected ReservationsQueryBuilder $queryBuilder;
 
-    public function __construct(BookingsQueryBuilder $bookingsQueryBuilder)
+    public function __construct(ReservationsQueryBuilder $reservationsQueryBuilder)
     {
-        $this->queryBuilder = $bookingsQueryBuilder;
+        $this->queryBuilder = $reservationsQueryBuilder;
     }
 
     /**
@@ -28,7 +28,7 @@ class BookingListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'bookings' => $this->queryBuilder->paginateWithRelations(true, 'id', 20),
+            'reservations' => $this->queryBuilder->paginateWithRelations(true, 'id', 20),
         ];
     }
 
@@ -53,7 +53,7 @@ class BookingListScreen extends Screen
             Link::make('Создать бронь')
                 ->type(Color::PRIMARY)
                 ->icon('plus-square-fill')
-                ->route('platform.bookings.create')
+                ->route('platform.reservations.create')
         ];
     }
 
@@ -65,7 +65,7 @@ class BookingListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            BookingListLayout::class
+            ReservationListLayout::class
         ];
     }
 }

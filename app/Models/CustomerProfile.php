@@ -76,8 +76,8 @@ class CustomerProfile extends Model
     ];
 
     //Relations
-    public function bookings(): HasMany
+    public function reservations(): HasMany
     {
-        return $this->hasMany(Booking::class, 'customer_profile_id');
+        return $this->hasMany(Reservation::class, 'customer_profile_id');
     }
 }
