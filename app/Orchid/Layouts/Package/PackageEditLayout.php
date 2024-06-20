@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Package;
 
+use App\Enums\DayOfWeek;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Input;
@@ -13,20 +14,13 @@ use Orchid\Support\Color;
 
 class PackageEditLayout extends Rows
 {
-    protected array $days = [
-        1 => 'Понедельник',
-        2 => 'Вторник',
-        3 => 'Среда',
-        4 => 'Четверг',
-        5 => 'Пятница',
-        6 => 'Суббота',
-        7 => 'Воскресенье'
-    ];
 
     /**
      * Get the fields elements to be displayed.
      *
      * @return Field[]
+     * @throws \ReflectionException
+     * @throws \Throwable
      */
     protected function fields(): iterable
     {
@@ -44,12 +38,12 @@ class PackageEditLayout extends Rows
             Select::make('package.days_start')
                   ->required()
                   ->title('Начало')
-                  ->options($this->days)
+                  ->fromEnum(DayOfWeek::class, 'dayLocaleUcFirst')
                   ->empty('Не выбрано'),
             Select::make('package.days_end')
                   ->required()
                   ->title('Конец')
-                  ->options($this->days)
+                  ->fromEnum(DayOfWeek::class, 'dayLocaleUcFirst')
                   ->empty('Не выбрано'),
 
             Button::make('Создать пакет')
