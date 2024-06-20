@@ -1,24 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->comment('Бронирования');
             $table->id();
             $table->foreignId('cottage_id')
                   ->references('id')
                   ->on('cottages')
-                  ->cascadeOnDelete()
-                  ->comment('Дата заезда');
+                  ->cascadeOnDelete();
             $table->foreignId('customer_profile_id')
                   ->references('id')
                   ->on('customer_profiles')

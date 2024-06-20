@@ -20,7 +20,21 @@ class PriceListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'prices' => Price::paginate(20)
+            'prices' => Price::filters()
+                             ->with('cottageType:id,name', 'package:id,name', 'period:id,name,start,end')
+                             ->select(
+                                 'id',
+                                 'name',
+                                 'cottage_type_id',
+                                 'period_id',
+                                 'package_id',
+                                 'rate',
+                                 'is_active',
+                                 'created_at',
+                                 'updated_at'
+                             )
+                             ->defaultSort('id')
+                             ->paginate(20)
         ];
     }
 

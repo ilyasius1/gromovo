@@ -43,7 +43,7 @@ class PriceEditLayout extends Rows
                   ->help('')
                   ->fromModel(CottageType::class, 'name'),
             Relation::make('price.period_id')
-                    ->fromModel(Period::class, 'id')
+                    ->fromModel(Period::class, 'name')
                     ->applyScope('active')
                     ->required()
                     ->empty('Выберите период')
@@ -67,6 +67,7 @@ class PriceEditLayout extends Rows
 
             Switcher::make('price.is_active')
                     ->sendTrueOrFalse()
+                    ->checked()
                     ->title('Активна')
                     ->placeholder('Активна'),
 

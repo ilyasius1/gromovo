@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Exception;
+use Throwable;
 
 class NoPricesException extends Exception
 {
-    protected $code = 404;
-    protected $message = 'Не найдено цен по запрошенным параметрам';
+    public function __construct(string $message = "Не найдено цен по запрошенным параметрам", int $code = 404, ?Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }

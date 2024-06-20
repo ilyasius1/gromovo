@@ -108,24 +108,24 @@ class CottageEditLayout extends Rows
                     ->placeholder('Сауна')
                     ->help(''),
             CheckBox::make('cottage.fireplace')
-                    ->title('Мангал')
-                    ->placeholder('Место для мангала')
+                    ->title('Камин')
+                    ->placeholder('Камин')
                     ->help(''),
             CheckBox::make('cottage.is_active')
-                    ->title('Активен')
-                    ->placeholder('Активен?')
-                    ->help(''),
+                ->title('Активен')
+                ->placeholder('Активен?')
+                ->help(''),
             Button::make('Создать коттедж')
-                  ->type(Color::SUCCESS)
-                  ->icon('save')
-                  ->method('store')
-                  ->canSee(!$this->query['cottageExists']),
+                ->type(Color::SUCCESS)
+                ->icon('save')
+                ->method('store')
+                ->canSee(!$this->query['cottageExists']),
 
             Button::make('Сохранить')
-                  ->type(Color::SUCCESS)
-                  ->icon('save')
-                  ->method('update')
-                  ->canSee($this->query['cottageExists'])
+                ->type(Color::SUCCESS)
+                ->icon('save')
+                ->method('update')
+                ->canSee($this->query['cottageExists'])
         ];
     }
 }

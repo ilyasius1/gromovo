@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\Cottage;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Support\Facades\Layout;
 
 class CottageGalleryEditLayout extends Rows
 {

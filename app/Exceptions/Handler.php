@@ -25,9 +25,9 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (WrongReservationAmountException $e) {
+        $this->reportable(function (WrongBookingPriceException $e) {
             if (request()->is('admin/*')) {
-                return response($e->getMessage(), 409);//->withErrors($e->getMessage());
+                return response($e->getMessage(), 409);
             }
         });
     }
