@@ -25,6 +25,8 @@ class StoreCottageTypeRequest extends FormRequest
     {
         return [
             'cottageType.name' => 'required|min:1|max:255|unique:App\Models\CottageType,name',
+            'cottageType.main_places' => 'required|min:1|max:255',
+            'cottageType.additional_places' => 'required|min:1|max:255'
         ];
     }
 }
