@@ -108,8 +108,8 @@ class CottageEditLayout extends Rows
                     ->placeholder('Сауна')
                     ->help(''),
             CheckBox::make('cottage.fireplace')
-                    ->title('Мангал')
-                    ->placeholder('Место для мангала')
+                    ->title('Камин')
+                    ->placeholder('Камин')
                     ->help(''),
             CheckBox::make('cottage.is_active')
                     ->title('Активен')

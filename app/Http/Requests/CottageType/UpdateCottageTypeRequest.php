@@ -32,6 +32,8 @@ class UpdateCottageTypeRequest extends FormRequest
                 Rule::unique('App\Models\CottageType', 'name')
                     ->ignore($this->route()->cottageType)
             ],
+            'cottageType.main_places' => 'required|min:1|max:255',
+            'cottageType.additional_places' => 'required|min:1|max:255'
         ];
     }
 }

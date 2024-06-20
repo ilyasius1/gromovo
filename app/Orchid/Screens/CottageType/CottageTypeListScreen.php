@@ -65,6 +65,9 @@ class CottageTypeListScreen extends Screen
                       return Link::make($cottageType->name)
                                  ->route('platform.cottageTypes.edit', $cottageType);
                   }),
+                TD::make('main_places', 'Основных мест'),
+                TD::make('additional_places', 'Дополнительных мест'),
+                TD::make('children_places', 'Дополнительных мест для детей'),
                 TD::make('created_at', 'Дата создания')
                   ->sort()
                   ->filter(DateRange::make())
